@@ -30,6 +30,7 @@ async function getFileStructureByProject(projectName) {
                         commitMessage: file.commitMessage,
                         commitId:file.commitId,
                         timestamp: file.timestamp,
+                        tag: file.tag,
                         filepath: `${process.env.IP}/download/${encodeURIComponent(file.path)}`,                    };
                 }
 
@@ -64,7 +65,19 @@ async function getAllProjectsFileStructure() {
     }
 }
 
+async function getAllProjects(req,res,next){
+    try {
+        console.log('Fetching projects')
+        const projects = await FileModel.distinct('project');
+        res.json(projects);
+    } catch (error) {
+        console.error(error);
+        res.json({error:'Internal Server Error'});
+    }
+}
+
 module.exports = {
     getFileStructureByProject,
-    getAllProjectsFileStructure
+    getAllProjectsFileStructure,
+    getAllProjects
 };

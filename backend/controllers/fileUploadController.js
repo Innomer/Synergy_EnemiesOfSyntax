@@ -22,11 +22,14 @@ const singleFileUpload = async (req, res, next) => {
             return res.status(400).json({ error: 'No file uploaded.' });
         }
 
+        const tag=getCADFolder(file.originalname);
+
         const fileData = {
             originalname: file.originalname,
             filename: file.filename,
             path: file.path,
             project,
+            tag
         };
 
         // Calculate hash of the new file
@@ -139,11 +142,13 @@ const multipleFileUpload = async (req, res, next) => {
             commitMessage = new Date().toISOString();
         }
         await Promise.all(req.files.map(async file => {
+            const tag=getCADFolder(file.originalname);
             const fileData = {
                 originalname: file.originalname,
                 filename: file.filename,
                 path: file.path,
                 project,
+                tag
             };
 
             // Calculate hash of the new file
@@ -235,5 +240,15 @@ async function calculateFileHash(filePath) {
     hash.update(fileContent);
     return hash.digest('hex');
 }
+function getCADFolder(filename) {
+    const cadKeywords = ["Architectural", "Structural", "Hydraulic", "Electrical", "Civil"];
 
+    const foundKeyword = cadKeywords.find(keyword => filename.includes(keyword));
+
+    if (foundKeyword) {
+        return foundKeyword.toLowerCase();
+    } else {
+        return 'other';
+    }
+}
 module.exports = { singleFileUpload, multipleFileUpload, commitRollback, fileRollback, getCommitHistoryForFile, getCommitHistoryForProject };

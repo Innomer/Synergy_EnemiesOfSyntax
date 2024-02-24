@@ -2,13 +2,13 @@ const express = require("express")
 const path = require("path")
 const multer = require("multer");
 const fs = require("fs");
-const {File} = require('../models/fileModel');
+const { File } = require('../models/fileModel');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const project=req.body.project || 'unknown';
+        const project = req.body.project || 'unknown';
         const ext = path.extname(file.originalname);
-        const folder = getFolderByExtension(ext);
+        const folder = getFolderByExtension(ext,file.originalname);
         const destination = path.join('static', project, folder);
         fs.mkdirSync(destination, { recursive: true });
 
@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
     },
 });
 
-function getFolderByExtension(extension) {
+function getFolderByExtension(extension, filename) {
     switch (extension) {
         case '.jpg':
         case '.jpeg':

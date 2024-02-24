@@ -10,6 +10,7 @@ const fileSchema = new mongoose.Schema({
     commitId: String,
     timestamp: { type: Date, default: Date.now },
     hash: String,
+    tag: String
 });
 
 const FileModel = mongoose.model('File', fileSchema);
