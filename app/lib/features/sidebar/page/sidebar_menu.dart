@@ -1,6 +1,6 @@
+import 'package:animated_tree_view/animated_tree_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:animated_tree_view/animated_tree_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../bloc/sidebar_menu_bloc/sidebar_menu_bloc.dart';
@@ -8,19 +8,18 @@ import '../bloc/sidebar_menu_bloc/sidebar_menu_event.dart';
 import '../bloc/sidebar_menu_bloc/sidebar_menu_state.dart';
 
 class SidebarMenu extends StatelessWidget {
-  const SidebarMenu({Key? key}) : super(key: key);
+  const SidebarMenu({super.key});
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       builder: (BuildContext context, Widget? child) => MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (_) => SidebarMenuBloc()
-              ..add(FetchSidebarMenuEvent(menu: "Dashboard")),
+            create: (_) => SidebarMenuBloc()..add(FetchSidebarMenuEvent(menu: "Dashboard")),
           ),
         ],
         child: Scaffold(
-          backgroundColor: const Color(0xFFe2e1e4),
+          // backgroundColor: const Color(0xFFe2e1e4),
           body: BlocBuilder<SidebarMenuBloc, SidebarMenuState>(
             builder: (context, state) {
               if (state is SidebarMenuSuccess) {
@@ -36,8 +35,8 @@ class SidebarMenu extends StatelessWidget {
                           Container(
                             color: const Color(0xFF171719),
                             width: 250,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
+                            child: const Padding(
+                              padding: EdgeInsets.only(
                                 top: 15,
                                 left: 12,
                                 right: 12,
@@ -45,7 +44,7 @@ class SidebarMenu extends StatelessWidget {
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     "",
                                     style: TextStyle(
@@ -74,8 +73,7 @@ class SidebarMenu extends StatelessWidget {
                                   );
                                 },
                                 onItemTap: (item) {
-                                  BlocProvider.of<SidebarMenuBloc>(context).add(
-                                      FetchSidebarMenuEvent(menu: item.key));
+                                  BlocProvider.of<SidebarMenuBloc>(context).add(FetchSidebarMenuEvent(menu: item.key));
                                 },
                                 builder: (context, node) {
                                   final isSelected = state.menu == node.key;
@@ -84,33 +82,26 @@ class SidebarMenu extends StatelessWidget {
                                     cursor: SystemMouseCursors.click,
                                     child: Container(
                                       color: node.level >= 2 || isExpanded
-                                          ? const Color(
-                                              0xFF313136) // For coloring the background of child nodes
+                                          ? const Color(0xFF313136) // For coloring the background of child nodes
                                           : const Color(0xFF171719),
-                                      height:
-                                          42, // Padding between one menu and another.
+                                      height: 42, // Padding between one menu and another.
                                       width: 250,
                                       alignment: Alignment.center,
                                       child: Padding(
                                         padding: node.level >= 2
-                                            ? const EdgeInsets.only(
-                                                left:
-                                                    27) // Padding for the children of the node
+                                            ? const EdgeInsets.only(left: 27) // Padding for the children of the node
                                             : const EdgeInsets.only(left: 0),
                                         child: Container(
                                           width: 250,
-                                          height:
-                                              45, // The size dimension of the active button
+                                          height: 45, // The size dimension of the active button
                                           alignment: Alignment.centerLeft,
                                           decoration: BoxDecoration(
                                             color: isSelected
                                                 ? node.isLeaf
-                                                    ? const Color(
-                                                        0xFF2c45e8) // The color for the active node.
+                                                    ? const Color(0xFF2c45e8) // The color for the active node.
                                                     : null
                                                 : null,
-                                            borderRadius:
-                                                const BorderRadius.only(
+                                            borderRadius: const BorderRadius.only(
                                               topLeft: Radius.circular(
                                                 50,
                                               ),
@@ -161,9 +152,6 @@ class SidebarMenu extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
-                    Expanded(
-                      child: ScreensView(menu: state.menu),
                     ),
                   ],
                 );
@@ -228,7 +216,6 @@ final menuTree = TreeNode.root()
       TreeNode(key: "Settings", data: Icons.settings),
     ],
   );
-
 
 // final menuTree = TreeNode.root()
 //   ..addAll(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../sidebar/page/sidebar_menu.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -30,7 +32,11 @@ class _HomeScreenState extends State<HomeScreen> {
             title: const Text('Home Screen'),
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  // Open Drawer
+
+                  Scaffold.of(context).openDrawer();
+                },
                 icon: const Icon(Icons.person),
               ),
             ],
@@ -38,12 +44,26 @@ class _HomeScreenState extends State<HomeScreen> {
           body: const Center(
             child: Text('Home Screen'),
           ),
+          drawer: TreeViewDrawer(),
           floatingActionButton: FloatingActionButton(
             onPressed: () {},
             child: const Icon(Icons.add),
           ),
         ),
       ),
+    );
+  }
+}
+
+class TreeViewDrawer extends StatelessWidget {
+  const TreeViewDrawer({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: SidebarMenu(),
     );
   }
 }
