@@ -1,0 +1,111 @@
+version: "3.0"
+services:
+    loadbalancer:
+        image: "pdftron/wv-loadbalancer:latest"
+        # For providing a SSL key. Mounts the directory named SSL and expects a combined_key.pem to be present.
+        # volumes:
+        #  - ./ssl/:/etc/ssl/default/
+        ulimits:
+          nofile:
+            soft: 64000
+            hard: 64000
+        environment:
+            # used if you wish to replace the SSL port with another HTTP port
+            # bind '8051' in your ports to use this port
+            # effective for a situation where HTTPs is handled by another entrypoint
+            DISABLE_SSL: 'false'
+            # used if the anonymous annotations feature is being hosted on a server other than
+            # the one which processes PDFs
+            INITIAL_NODE_A: pdfd-tomcat
+            INITIAL_NODE_B: pdfd-tomcat1
+            #INITIAL_NODE_C: pdfd-tomcat2
+            # Sets a URL prefix for the server
+            URL_PREFIX:
+            # Enables management from tcp socket 4893
+            # Do not enable unless your server is secure from external access
+            # Add 4893:4893 to the ports section if using this
+            ENABLE_TCP_MANAGEMENT: 'false'
+        ports:
+            # Sets the port to bind the internal 8090 port to. Follows the pattern
+            # external:internal (80:8090). Internal port must either be 8050 or 4430.
+            # Non ssl access
+            - 8090:8050
+            # SSL access
+            - 8443:4430
+            # Port for TCP management
+            - 60001:60001
+        restart: always
+    pdfd-tomcat:
+        image: "pdftron/webviewer-server:latest"
+        # If performing SSL directly from tomcat, replace the keys in the tc_ssl folder with your own.
+        # This can be left alone if using the load balancer, or handling ssl with any other service.
+        # volumes:
+        #  - ./tc_ssl:/usr/local/apache-tomcat/conf/ssl
+        # uncomment this and place any self signed certs your network will use inside of this folder locally
+        #  - ./external_certs:/certs
+        # uncomment to map the static data directory to a drive outside the container
+        # just replace my_external_static_data with the desired externally mapped folder.
+        #  - /files/my_external_data:/usr/local/apache-tomcat/static_data
+        # uncomment to map local data directory to external_resrouces
+        # just replace the local/path to data directory on local file system
+        # volumes:
+        #  - local/path:/usr/local/apache-tomcat/external_resources
+        ulimits:
+          nofile:
+            soft: 64000
+            hard: 64000
+        environment:
+          # More info about these arguments can be found at:
+            # https://www.pdftron.com/documentation/web/guides/wv-server-config
+            # Place your PDFTron key in this argument.
+            TRN_PDFNET_KEY: "demo:1708770002935:7f56906f030000000080a44f7237599240a4e00235f3c0f3230bcd66f4"
+            # If set to true, tomcat will include the demo app at localhost:port/demo?s
+            INCLUDE_DEMO: 'true'
+            # Normally the cache cleanup is triggered once there is less than 1Gb
+            # of space remaining on the partition, at which point files that have
+            # not been accessed recently are wiped from the cache.
+            # The following two settings override this behaviour. See here for more information.
+            # https://www.pdftron.com/documentation/web/guides/wv-server-hardware-and-network/#using-the-on-disk-cache
+            # TRN_MAX_CACHE_AGE_MINUTES: 0
+            # Cached content will be cleaned up until the cache occupies less space
+            # than this limit
+            # TRN_MAX_CACHED_MB: 0
+            # Control the cookie WebViewer Server checks for user stickiness.
+            TRN_DEBUG_MODE: 'false'
+    pdfd-tomcat1:
+        image: "pdftron/webviewer-server:latest"
+        # If performing SSL directly from tomcat, replace the keys in the tc_ssl folder with your own.
+        # This can be left alone if using the load balancer, or handling ssl with any other service.
+        # volumes:
+        #  - ./tc_ssl:/usr/local/apache-tomcat/conf/ssl
+        # uncomment this and place any self signed certs your network will use inside of this folder locally
+        #  - ./external_certs:/certs
+        # uncomment to map the static data directory to a drive outside the container
+        # just replace my_external_static_data with the desired externally mapped folder.
+        #  - /files/my_external_data:/usr/local/apache-tomcat/static_data
+        # uncomment to map local data directory to external_resrouces
+        # just replace the local/path to data directory on local file system
+        # volumes:
+        #  - local/path:/usr/local/apache-tomcat/external_resources
+        ulimits:
+          nofile:
+            soft: 64000
+            hard: 64000
+        environment:
+          # More info about these arguments can be found at:
+            # https://www.pdftron.com/documentation/web/guides/wv-server-config
+            # Place your PDFTron key in this argument.
+            TRN_PDFNET_KEY:
+            # If set to true, tomcat will include the demo app at localhost:port/demo?s
+            INCLUDE_DEMO: 'true'
+            # Normally the cache cleanup is triggered once there is less than 1Gb
+            # of space remaining on the partition, at which point files that have
+            # not been accessed recently are wiped from the cache.
+            # The following two settings override this behaviour. See here for more information.
+            # https://www.pdftron.com/documentation/web/guides/wv-server-hardware-and-network/#using-the-on-disk-cache
+            # TRN_MAX_CACHE_AGE_MINUTES: 0
+            # Cached content will be cleaned up until the cache occupies less space
+            # than this limit
+            # TRN_MAX_CACHED_MB: 0
+            # Control the cookie WebViewer Server checks for user stickiness.
+            TRN_DEBUG_MODE: 'false'
