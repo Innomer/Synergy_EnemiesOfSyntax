@@ -1,0 +1,210 @@
+[
+  {
+    "content": "Reliance Industries Ltd",
+    "objectID": "3ca6cde7-7e6e-4292-aefc-ecf936e1fb93",
+    "type": "lvl1",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/refineries/relianceindustries/RI",
+    "hierarchy": { "lvl1": "up", "lvl2": "Energy", "lvl3": "Oil & Gas" }
+  },
+  {
+    "content": "Tata Consultancy Services Ltd",
+    "objectID": "50033914-210d-4c8b-8004-c2b34c6fbdfa",
+    "type": "lvl2",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/computers-software/tataconsultancyservices/TCS",
+    "hierarchy": {
+      "lvl1": "Information Technology",
+      "lvl2": "IT Services",
+      "lvl3": "Consulting"
+    }
+  },
+  {
+    "content": "HDFC Bank Ltd",
+    "objectID": "6e8b56c7-ca2f-4ca3-a2c2-07c82eb8e15c",
+    "type": "lvl2",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/banks-private-sector/hdfcbank/HDF01",
+    "hierarchy": {
+      "lvl1": "Financials",
+      "lvl2": "Banking",
+      "lvl3": "Nifty Bank"
+    }
+  },
+  {
+    "content": "Nestle India Ltd.",
+    "objectID": "6e8b56c7-ca2f-4ca3-a2c2-07c82eb8e15c",
+    "type": "lvl2",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/food-processing/nestleindia/NI",
+    "hierarchy": { "lvl1": "Consumer", "lvl2": "Food", "lvl3": "Retail" }
+  },
+  {
+    "content": "ICICI Bank Ltd",
+    "objectID": "4610f522-78e5-41bd-9f64-cbd009452718",
+    "type": "lvl3",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/banks-private-sector/icicibank/ICI02",
+    "hierarchy": {
+      "lvl1": "Financials",
+      "lvl2": "Banking",
+      "lvl3": "Corporate Banking"
+    }
+  },
+  {
+    "content": "Infosys Ltd",
+    "objectID": "0e48151d-ec9c-4dde-8bd4-3ddab47f18e9",
+    "type": "lvl3",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/computers-software/infosys/IT",
+    "hierarchy": {
+      "lvl1": "Information Technology",
+      "lvl2": "IT Services",
+      "lvl3": "Software"
+    }
+  },
+  {
+    "content": "Hindustan Unilever Ltd",
+    "objectID": "bdb0fd53-de04-44e8-8de7-b0f2dbe31af1",
+    "type": "lvl3",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/personal-care/hindustanunilever/HU",
+    "hierarchy": {
+      "lvl1": "Consumer Goods",
+      "lvl2": "Personal Care",
+      "lvl3": "Home Care"
+    }
+  },
+  {
+    "content": "ITC Ltd",
+    "objectID": "15f98f9d-18b1-45d4-b81d-5a57b87b0a8a",
+    "type": "lvl2",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/diversified/itc/ITC",
+    "hierarchy": {
+      "lvl1": "Consumer Goods",
+      "lvl2": "Tobacco",
+      "lvl3": "Cigarettes"
+    }
+  },
+  {
+    "content": "State Bank of India",
+    "objectID": "b431c6cc-c8bb-4f5b-b20d-8b2fc961e59b",
+    "type": "lvl2",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/banks-public-sector/statebankindia/SBI",
+    "hierarchy": {
+      "lvl1": "Financials",
+      "lvl2": "Banking",
+      "lvl3": "Public Sector"
+    }
+  },
+  {
+    "content": "Bajaj Finance Ltd",
+    "objectID": "793c5d6f-7862-46ee-bac1-9e7d5c3a5b20",
+    "type": "lvl3",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/finance-nbfc/bajajfinance/BAF",
+    "hierarchy": {
+      "lvl1": "Financials",
+      "lvl2": "NBFC",
+      "lvl3": "Consumer Finance"
+    }
+  },
+  {
+    "content": "Larsen & Toubro Ltd",
+    "objectID": "a2b8f68f-1f4d-49e1-8823-89de5310d1a6",
+    "type": "lvl3",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/infrastructure-general/larsentoubro/LT",
+    "hierarchy": {
+      "lvl1": "Industrials",
+      "lvl2": "Engineering",
+      "lvl3": "Construction"
+    }
+  },
+  {
+    "content": "Maruti Suzuki India Ltd",
+    "objectID": "869e2e3f-19c1-4aae-aa1f-4b05fc8c8c55",
+    "type": "lvl3",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/auto-carsjeeps/marutisuzukiindia/MS24",
+    "hierarchy": {
+      "lvl1": "Automobile",
+      "lvl2": "Passenger Vehicles",
+      "lvl3": "Cars"
+    }
+  },
+  {
+    "content": "Axis Bank Ltd",
+    "objectID": "d860aa2a-2bc5-4760-8525-150db8cfad27",
+    "type": "lvl1",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/banks-private-sector/axisbank/AB16",
+    "hierarchy": {
+      "lvl1": "Financials",
+      "lvl2": "Banking",
+      "lvl3": "Private Sector"
+    }
+  },
+  {
+    "content": "Wipro Ltd",
+    "objectID": "1cbac7b9-4a04-4d7c-b61f-03cf17b2ef36",
+    "type": "lvl2",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/computers-software/wipro/W",
+    "hierarchy": {
+      "lvl1": "Information Technology",
+      "lvl2": "IT Services",
+      "lvl3": "IT Consulting"
+    }
+  },
+  {
+    "content": "UltraTech Cement Ltd",
+    "objectID": "8c9a1c3e-5872-4fc4-834e-c80123abca27",
+    "type": "lvl2",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/cement-major/ultratechcement/UTC01",
+    "hierarchy": {
+      "lvl1": "Materials",
+      "lvl2": "Cement",
+      "lvl3": "Building Materials"
+    }
+  },
+  {
+    "content": "Hindalco Industries Ltd",
+    "objectID": "8e94b4c7-2e71-4f3b-8794-0c1a8fc19a50",
+    "type": "lvl3",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/ironsteel/hindalcoindustries/HI",
+    "hierarchy": { "lvl1": "Materials", "lvl2": "Metals", "lvl3": "Aluminium" }
+  },
+  {
+    "content": "Tech Mahindra Ltd",
+    "objectID": "a89707a1-5b82-487f-9c08-5a5b189de246",
+    "type": "lvl3",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/computers-software/techmahindra/TM4",
+    "hierarchy": {
+      "lvl1": "Information Technology",
+      "lvl2": "IT Services",
+      "lvl3": "Telecom"
+    }
+  },
+  {
+    "content": "Power Grid Corporation of India Ltd",
+    "objectID": "a907bf50-80c1-4a2e-9504-72f6c1c1b56d",
+    "type": "lvl3",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/power-generationdistribution/powergridcorporationindia/PGC",
+    "hierarchy": {
+      "lvl1": "Utilities",
+      "lvl2": "Transmission",
+      "lvl3": "Power"
+    }
+  },
+  {
+    "content": "NTPC Ltd",
+    "objectID": "2612e0fc-1b88-490d-84f9-f41d4a8df56d",
+    "type": "lvl3",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/power-generationdistribution/ntpc/NTP",
+    "hierarchy": {
+      "lvl1": "Utilities",
+      "lvl2": "Power Generation",
+      "lvl3": "Energy"
+    }
+  },
+  {
+    "content": "Kotak Mahindra Bank Ltd",
+    "objectID": "eb2d0323-8e13-40da-8f95-4fe2c04961ef",
+    "type": "lvl3",
+    "url": "https://www.moneycontrol.com/india/stockpricequote/banks-private-sector/kotakmahindrabank/KMB",
+    "hierarchy": {
+      "lvl1": "Financials",
+      "lvl2": "Banking",
+      "lvl3": "Private Sector"
+    }
+  }
+]

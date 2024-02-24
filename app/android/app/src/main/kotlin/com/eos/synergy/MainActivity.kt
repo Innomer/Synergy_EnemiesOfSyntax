@@ -1,5 +1,0 @@
-package com.eos.synergy
-
-import io.flutter.embedding.android.FlutterActivity
-
-class MainActivity: FlutterActivity()
