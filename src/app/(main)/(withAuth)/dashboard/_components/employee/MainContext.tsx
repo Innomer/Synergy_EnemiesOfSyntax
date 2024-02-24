@@ -8,8 +8,7 @@ const ApryseWebViewer = ({ url }: { url: string }) => {
       {
         path: "/webviewer/lib",
         webviewerServerURL: "http://192.168.159.59:8090",
-        initialDoc:
-          "https://aapkadhikar.s3.ap-south-1.amazonaws.com/uploads/colorwh.dwg",
+        initialDoc: url,
       },
       viewer.current!
     ).then((instance) => {
@@ -17,7 +16,12 @@ const ApryseWebViewer = ({ url }: { url: string }) => {
     });
   }, []);
 
-  return <div ref={viewer} style={{ height: "100vh" }}></div>;
+  return (
+    <div>
+      <div ref={viewer} style={{ height: "100vh" }}></div>
+      <div></div>
+    </div>
+  );
 };
 
 export default ApryseWebViewer;

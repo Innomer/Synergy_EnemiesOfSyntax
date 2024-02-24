@@ -30,6 +30,14 @@ import { intersectionBy, isEmpty } from "lodash";
 import { writeStorage, useLocalStorage } from "@rehooks/local-storage";
 import clsx from "clsx";
 import { Search, ChevronRight, Hash } from "lucide-react";
+import {
+  ToolOutlined,
+  FileImageOutlined,
+  FilePdfOutlined,
+  AppstoreOutlined,
+  FileWordOutlined,
+  FileExcelOutlined,
+} from "@ant-design/icons";
 
 //Components
 import searchData from "@/assets/data/SearchMeta.json";
@@ -186,28 +194,22 @@ export const Cmdk: FC<{}> = () => {
   const results = useMemo<SearchResultItem[]>(
     function getResults() {
       if (query.length < 2) return [];
-
       const data = searchData as SearchResultItem[];
-
       const words = query.split(" ");
-
       if (words.length === 1) {
         return matchSorter(data, query, {
           keys: MATCH_KEYS,
         }).slice(0, MAX_RESULTS);
       }
-
       const matchesForEachWord = words.map((word) =>
         matchSorter(data, word, {
           keys: MATCH_KEYS,
         })
       );
-
       const matches = intersectionBy(...matchesForEachWord, "objectID").slice(
         0,
         MAX_RESULTS
       );
-
       trackEvent("Cmdk - Search", {
         name: "cmdk - search",
         action: "search",
@@ -349,18 +351,25 @@ export const Cmdk: FC<{}> = () => {
     },
     []
   );
+  const extensionIconMapping = {
+    dwg: <ToolOutlined />,
+    png: <FileImageOutlined />,
+    pdf: <FilePdfOutlined />,
+    txt: <AppstoreOutlined />,
+    doc: <FileWordOutlined />,
+    docx: <FileWordOutlined />,
+    xls: <FileExcelOutlined />,
+    xlsx: <FileExcelOutlined />,
+  };
 
   const renderItem = useCallback(
     (item: SearchResultItem, index: number, isRecent = false) => {
-      const isLvl1 = item.type === "lvl1";
+      // const isLvl1 = item.;
+      const fileExtension = item.hierarchy.lvl1!.split(" ")[0]!.toLowerCase();
+      const mainIcon = extensionIconMapping[fileExtension] || (
+        <AppstoreOutlined />
+      ); 
 
-      const mainIcon = isRecent ? (
-        <Search className={slots.leftIcon()} size={20} strokeWidth={2} />
-      ) : isLvl1 ? (
-        <Icons.DocumentCodeBoldIcon className={slots.leftIcon()} />
-      ) : (
-        <Hash className={slots.leftIcon()} />
-      );
 
       return (
         <Command.Item
@@ -384,11 +393,9 @@ export const Cmdk: FC<{}> = () => {
           <div className={slots.leftWrapper()}>
             {mainIcon}
             <div className={slots.itemContent()}>
-              {!isLvl1 && (
-                <span className={slots.itemParentTitle()}>
-                  {item.hierarchy.lvl1}
-                </span>
-              )}
+              <span className={slots.itemParentTitle()}>
+                {item.hierarchy.lvl2}
+              </span>
               <p className={slots.itemTitle()}>{item.content}</p>
             </div>
           </div>

@@ -4,6 +4,7 @@ export const siteConfig = {
   name: "Docstruct",
   description:
     "PlanHarbor",
-  url: "https://PlanHarbor.vercel.app/",
-  logo: <FileCheck2 />
+  url: "https://Docstruct.vercel.app/",
+  logo: <FileCheck2 />,
+  baseUrl:"http://192.168.159.157:8080"
 };

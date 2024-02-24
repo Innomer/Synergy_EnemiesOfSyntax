@@ -28,7 +28,10 @@ export default function UserDropdown() {
             as="button"
             size="sm"
             className="transition-transform flex place-items-center justify-center hover:scale-105"
-            src={data?.user?.image || undefined}
+            src={
+              "https://lh3.googleusercontent.com/a/ACg8ocKf4OFSZ0LEnFJqY4rzJ7N2TUIPGjxNZY1PpQ5K9XdJ=s432-c-no" ||
+              undefined
+            }
             fallback={<User2 />}
           />
         </DropdownTrigger>

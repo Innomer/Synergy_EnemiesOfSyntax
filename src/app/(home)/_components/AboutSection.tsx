@@ -28,19 +28,36 @@ function AboutSection() {
   return (
     <>
       <div className="flex flex-col gap-y-24">
-
         <StickyScroll
           content={[
-            { description: "LKLF8", title: "fejkyr" },
-            { description: "yooo", title: "aasda" },
-            { description: "a3242", title: "fsc" },
-            { description: "luk", title: "kjdqka" },
-            { description: "", title: "" },
+            {
+              description:
+                "A clear and accessible sidebar showcasing all project folders with nested subfolders for easy navigation.",
+              title: "Intuitive file organization:",
+            },
+            {
+              description:
+                "Quick retrieval of relevant documents upon clicking a folder, displaying all contained files in a user-friendly format.",
+              title: "Seamless file access",
+            },
+            {
+              description:
+                "Segment the files in the folder based on their types, distinguishing between PDFs, DOCs, images, etc.",
+              title: "Files segmentation",
+            },
+            {
+              description:
+                "Embedded annotation features like drawing, highlighting, and text commenting directly on files for clear communication and feedback.",
+              title: "Interactive tools",
+            },
+            {
+              description:
+                "A robust system for version comparison, allowing users to overlay or side-by-side compare new files with previous versions to identify changes and maintain version history.",
+              title: "Version control",
+            },
           ]}
         />
-
         <HowWeWorkSection />
-
         <div className="flex flex-col-reverse md:flex-row justify-evenly align-middle">
           <div className="flex justify-evenly  my-auto text-center md:text-left">
             <AnimatedText
@@ -60,7 +77,6 @@ function AboutSection() {
             />
           </div>
         </div>
-        
       </div>
     </>
   );

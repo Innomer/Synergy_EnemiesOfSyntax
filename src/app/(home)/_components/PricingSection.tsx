@@ -25,75 +25,76 @@ function PricingSection() {
 
   const pricingSectionVariants = [
     {
-      title: "Gold membership plan",
-      Gradientcolor: "rgb(253 ,224 ,71,0.23)",
-      price: `${isSelected ? "1000₹" : "9000₹"}`,
-      description: "Get Most of our ML features",
+      title: "Basic Plan",
+      GradientColor: "rgb(253, 224, 71, 0.23)",
+      price: isSelected ? "₹5000" : "₹45000", // Removed the template literal syntax as it's unnecessary here
+      description:
+        "Streamline your project's document management with essential features.",
       features: [
         {
-          availible: true,
-          text: "Retirement calculator",
+          available: true,
+          text: "Centralized document storage",
         },
         {
-          availible: true,
-          text: "Interact in user forums",
+          available: true,
+          text: "Intuitive file organization with a clear, accessible sidebar",
         },
         {
-          availible: true,
-          text: "Financial advice chatbot",
+          available: false,
+          text: "Seamless file access and segmentation",
         },
         {
-          availible: false,
-          text: "Data driven insights for future planning",
+          available: false,
+          text: "Basic version control",
         },
       ],
     },
     {
-      title: "Diamond membership plan",
-      Gradientcolor: "rgb(147 ,197, 253,0.27)",
-      price: `${isSelected ? "2000₹" : "15000₹"}`,
-      description: "Get All of our ML features",
+      title: "Professional Plan",
+      GradientColor: "rgb(147, 197, 253, 0.27)",
+      price: isSelected ? "₹10000" : "₹90000", // Corrected syntax here as well
+      description: "Advanced document management features for larger projects.",
       features: [
         {
-          availible: true,
-          text: "Retirement calculator",
+          available: true,
+          text: "Centralized document storage",
         },
         {
-          availible: true,
-          text: "Interact in user forums",
+          available: true,
+          text: "Enhanced file organization and quick access",
         },
         {
-          availible: true,
-          text: "Financial advice chatbot",
+          available: true,
+          text: "File segmentation for efficient management",
         },
         {
-          availible: true,
-          text: "Data driven insights for future planning",
+          available: true,
+          text: "Robust version control and comparison",
         },
       ],
     },
     {
-      title: "FREE trial",
-      Gradientcolor: "rgb(23, 201, 100,0.17)",
-      price: "0₹",
-      buttonText: "Start now!",
-      description: "Get Most of our ML features",
+      title: "Enterprise Plan",
+      GradientColor: "rgb(23, 201, 100, 0.17)",
+      price: "Contact us",
+      description:
+        "Comprehensive solution for enterprise-level document management needs.",
       features: [
         {
-          availible: true,
-          text: "Retirement calculator",
+          available: true,
+          text: "All features in the Professional Plan",
         },
         {
-          availible: true,
-          text: "Interact in user forums",
+          available: true,
+          text: "Cross-platform accessibility for seamless collaboration",
         },
         {
-          availible: false,
-          text: "Financial advice chatbot",
+          available: true,
+          text: "Advanced interactive tools for document annotation and feedback",
         },
         {
-          availible: false,
-          text: "Data driven insights for future planning",
+          available: true,
+          text: "Customizable access permissions and security settings",
         },
       ],
     },
@@ -137,7 +138,7 @@ function PricingSection() {
                   background: useMotionTemplate`
                         radial-gradient(
                           300px circle at ${mouseX}px ${mouseY}px,
-                          ${variant.Gradientcolor},
+                          ${variant.GradientColor},
                           transparent 70%
                         )
                       `,
@@ -169,7 +170,7 @@ function PricingSection() {
                     key={indexForFeature}
                     className="flex items-center gap-1 overflow-y-hidden"
                   >
-                    {feature.availible ? (
+                    {feature.available ? (
                       <Check className="text-success" />
                     ) : (
                       <X className="text-danger" />
@@ -191,7 +192,7 @@ function PricingSection() {
                     : "absolute w-[56%] -bottom-5 z-50 left-1/2 transform -translate-x-1/2"
                 }`}
               >
-                {variant.buttonText ?? "Get Started"}
+                Get Started
               </Button>
             </div>
           ))}

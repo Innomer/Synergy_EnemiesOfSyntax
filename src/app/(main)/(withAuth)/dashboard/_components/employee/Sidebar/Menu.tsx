@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import {
   AppstoreOutlined,
@@ -15,6 +16,9 @@ import {
 import { Menu } from "antd";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { siteConfig } from "@/lib/config/siteConfig";
+import { useRouter } from "next/navigation";
+import { Spinner } from "@nextui-org/react";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -51,14 +55,20 @@ const getCategoryIcon = (category) => {
 const App = ({
   setSelectedDocument,
 }: {
-  setSelectedDocument: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedDocument: React.Dispatch<React.SetStateAction<undefined>>;
 }) => {
+  const router = useRouter();
+  const navigateToNextPage = () => {
+    router.push("/upload");
+  };
   const [menuItems, setMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getSideBarLinks() {
       try {
-        const { data } = await axios.get("http://192.168.172.157:8080/file/fs"); // Change this to your actual endpoint
+        setLoading(true);
+        const { data } = await axios.get(`${siteConfig.baseUrl}/file/fs`); // Change this to your actual endpoint
         console.log(data);
         const dynamicItems = data.map((project) => {
           const projectName = Object.keys(project)[0];
@@ -105,7 +115,11 @@ const App = ({
             null,
             [
               getItem("Settings", "13", <SettingOutlined />),
-              getItem("Create project", "14", <PlusCircleOutlined />),
+              getItem(
+                "Create project",
+                "14",
+                <PlusCircleOutlined onClick={navigateToNextPage} />
+              ),
             ],
             "group"
           ),
@@ -115,6 +129,8 @@ const App = ({
       } catch (err) {
         toast.error("Error fetching sidebar links");
         console.log(err);
+      } finally {
+        setLoading(false);
       }
     }
     getSideBarLinks();
@@ -125,7 +141,18 @@ const App = ({
     setSelectedDocument(e);
   };
 
-  return <Menu onClick={onClick} mode="inline" items={menuItems} />;
+  return loading ? (
+    <div className="flex justify-center align-middle min-h-screen">
+      <Spinner color="primary" />
+    </div>
+  ) : (
+    <Menu
+      onClick={onClick}
+      mode="inline"
+      items={menuItems}
+      className="!min-h-screen"
+    />
+  );
 };
 
 export default App;

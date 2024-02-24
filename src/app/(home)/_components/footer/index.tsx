@@ -20,16 +20,16 @@ export default function Footer() {
       linkedin: "https://www.linkedin.com/in/amannambisan/",
     },
     {
-      name: "Chaitya Shah",
-      linkedin: "https://www.linkedin.com/in/chaitya-shah-381b5421b/",
+      name: "Dishant Zaveri",
+      linkedin: "https://www.linkedin.com/in/dishant-zaveri-4301471b9/",
     },
     {
       name: "Mann Bhanushali",
       linkedin: "https://www.linkedin.com/in/innomer/",
     },
     {
-      name: "Paarshva Chitaliya",
-      linkedin: "https://www.linkedin.com/in/paarshva-chitaliya/",
+      name: "Prerak Gada",
+      linkedin: "https://www.linkedin.com/in/prerakgada/",
     },
   ];
   const pagesForFooter = [
@@ -77,25 +77,24 @@ export default function Footer() {
                 title="home"
                 className="inline-flex items-center"
               >
-                <Scale />
+                {siteConfig.logo}
                 <span className="ml-2 text-lg font-bold tracking-tight uppercase">
                   {siteConfig.name}
                 </span>
               </Link>
               <div className="mt-4 lg:max-w-sm">
                 <p className="my-4 text-sm">
-                  Retiral is a catalyst for financial empowerment, utilizing
-                  advanced AI to offer personalized guidance, event
-                  affordability analysis, and community-building through user
-                  clustering. We champion a future where financial security
-                  knows no bounds, extending our commitment to individuals and
-                  businesses.
+                  ConstructDoc streamlines document management for construction
+                  teams, centralizing file access and collaboration. Features
+                  include quick file navigation, real-time annotation, version
+                  control, and cross-platform accessibility, enhancing workflows
+                  and saving time.
                 </p>
-                <p className="text-sm ">
-                  With Retiral, experience a transformative approach to
-                  financial planning that transcends boundaries, fostering a
-                  broad societal impact and paving the way for enduring
-                  financial well-being.
+                <p className="text-sm">
+                  Our platform is tailored for construction professionals,
+                  offering a structured, user-friendly environment for efficient
+                  document and drawing management, ensuring project success from
+                  anywhere, at any time.
                 </p>
               </div>
             </div>

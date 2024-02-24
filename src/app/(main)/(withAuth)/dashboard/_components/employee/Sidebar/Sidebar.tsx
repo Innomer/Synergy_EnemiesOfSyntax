@@ -43,7 +43,7 @@ interface MenuItem {
 interface SideBarProps {
   collapsed: boolean;
   setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
-  setSelectedDocument: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedDocument: React.Dispatch<React.SetStateAction<undefined>>;
 }
 
 export default function Sidebar({
@@ -74,16 +74,17 @@ export default function Sidebar({
   return (
     <>
       <Sider
+        trigger={null}
         collapsible
         breakpoint="md"
+        className="!min-h-screen"
         style={{
           backgroundColor: `var(--background-color-secondary)`,
-          minHeight: "97vh",
         }}
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
       >
-        <App setSelectedDocument={setSelectedDocument}/>
+        <App setSelectedDocument={setSelectedDocument} />
       </Sider>
     </>
   );
