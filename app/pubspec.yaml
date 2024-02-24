@@ -22,16 +22,15 @@ dependencies:
   firebase_core: ^2.24.2
   flutter_lints: ^3.0.1
   
-
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   remove_alpha_ios: true
-  image_path: "assets/images/logo.jpg"
+  image_path: "assets/images/logo.webp"
   min_sdk_android: 21 # android min sdk min:16, default 21
   web:
     generate: true
-    image_path: "assets/images/logo.jpg"
+    image_path: "assets/images/logo.webp"
     background_color: "#hexcode"
     theme_color: "#hexcode"
 

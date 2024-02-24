@@ -27,4 +27,3 @@ String prettyJSON(Map<String, dynamic> message) {
 
 final ServerDetail serverDetail = serverDetails['prod']!;
 final String apiUrl = serverDetail.baseUrl + serverDetail.apiPath;
-
