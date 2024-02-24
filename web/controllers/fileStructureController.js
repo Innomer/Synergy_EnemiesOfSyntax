@@ -1,0 +1,69 @@
+// controllers/fileStructureController.js
+
+const { FileModel } = require('../models/fileModel');
+const path = require('path');
+
+// Function to get file structure based on project name
+async function getFileStructureByProject(projectName) {
+    try {
+        const files = await FileModel.find({ project: projectName });
+
+        const fileStructure = {};
+
+        files.forEach(file => {
+            const filePath = path.relative('static', file.path);
+            const versionedFilePath = path.relative('versions', file.version);
+
+            // Split the file path into an array
+            const filePathArray = filePath.split(path.sep);
+
+            // Build the file structure
+            let currentLevel = fileStructure;
+            filePathArray.forEach((folder, index) => {
+                currentLevel[folder] = currentLevel[folder] || {};
+
+                if (index === filePathArray.length - 1) {
+                    // Leaf node representing the file
+                    currentLevel[folder] = {
+                        filename: file.filename,
+                        version: versionedFilePath,
+                        commitMessage: file.commitMessage,
+                        timestamp: file.timestamp,
+                    };
+                }
+
+                currentLevel = currentLevel[folder];
+            });
+        });
+
+        return fileStructure;
+    } catch (error) {
+        console.error(error);
+        throw new Error('Failed to fetch file structure.');
+    }
+}
+async function getAllProjectsFileStructure() {
+    try {
+        // Get a list of unique project names from the database
+        const projects = await FileModel.distinct('project');
+
+        // Create an object to store the file structure for each project
+        const allProjectsFileStructure = {};
+
+        // Fetch file structure for each project
+        for (const project of projects) {
+            const projectFileStructure = await getFileStructureByProject(project);
+            allProjectsFileStructure[project] = projectFileStructure;
+        }
+
+        return allProjectsFileStructure;
+    } catch (error) {
+        console.error(error);
+        throw new Error('Failed to fetch file structure for all projects.');
+    }
+}
+
+module.exports = {
+    getFileStructureByProject,
+    getAllProjectsFileStructure
+};
