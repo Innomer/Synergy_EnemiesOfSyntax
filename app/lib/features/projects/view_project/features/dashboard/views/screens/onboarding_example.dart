@@ -1,6 +1,8 @@
 import 'package:concentric_transition/concentric_transition.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../main/main_screen.dart';
+
 final pages = [
   const PageData(
     icon: Icons.file_copy_rounded,
@@ -29,6 +31,14 @@ class OnboardingExample extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: ConcentricPageView(
+        onChange: (page) {
+          if (page > pages.length - 1) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const MainScreen()),
+            );
+          }
+        },
         colors: pages.map((p) => p.bgColor).toList(),
         radius: screenWidth * 0.1,
         // curve: Curves.ease,
@@ -49,6 +59,13 @@ class OnboardingExample extends StatelessWidget {
         // physics: NeverScrollableScrollPhysics(),
         itemBuilder: (index) {
           final page = pages[index % pages.length];
+          // if (index > pages.length) {
+          //   Navigator.push(
+          //     context,
+          //     MaterialPageRoute(builder: (context) => MainScreen()),
+          //   );
+          // }
+
           return SafeArea(
             child: _Page(page: page),
           );
@@ -92,8 +109,8 @@ class _Page extends StatelessWidget {
         space(8),
         _Text(
           page: page,
-          style: TextStyle(
-            fontSize: 30 ,
+          style: const TextStyle(
+            fontSize: 30,
           ),
         ),
       ],
@@ -148,8 +165,7 @@ class _Image extends StatelessWidget {
         .withRed(page.bgColor.red - 100)
         .withAlpha(90);
 
-    final icon1Color =
-        page.bgColor.withBlue(page.bgColor.blue - 10).withGreen(220);
+    final icon1Color = page.bgColor.withBlue(page.bgColor.blue - 10).withGreen(220);
     final icon2Color = page.bgColor.withGreen(66).withRed(77);
     final icon3Color = page.bgColor.withRed(111).withGreen(220);
 

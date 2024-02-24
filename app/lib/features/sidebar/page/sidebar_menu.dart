@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:animated_tree_view/animated_tree_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sidebar_menu/bloc/sidebar_menu_bloc/sidebar_menu_bloc.dart';
-import 'package:sidebar_menu/bloc/sidebar_menu_bloc/sidebar_menu_event.dart';
-import 'package:sidebar_menu/bloc/sidebar_menu_bloc/sidebar_menu_state.dart';
+
+import '../bloc/sidebar_menu_bloc/sidebar_menu_bloc.dart';
+import '../bloc/sidebar_menu_bloc/sidebar_menu_event.dart';
+import '../bloc/sidebar_menu_bloc/sidebar_menu_state.dart';
 
 class SidebarMenu extends StatelessWidget {
   const SidebarMenu({Key? key}) : super(key: key);

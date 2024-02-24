@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pdftron_flutter/pdftron_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:synergy/features/projects/view_project/features/dashboard/views/screens/onboarding_example.dart';
 import 'package:synergy/utils/utils.dart';
 
 import 'features/main/main_screen.dart';
@@ -49,7 +50,7 @@ class MainApp extends StatelessWidget {
         theme: lightTheme(),
         darkTheme: darkTheme(),
         themeMode: ThemeMode.system,
-        home: const MainScreen(),
+        home: const OnboardingExample(),
       ),
     );
   }
