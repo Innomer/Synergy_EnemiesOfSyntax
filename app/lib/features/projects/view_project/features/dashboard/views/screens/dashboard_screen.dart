@@ -3,35 +3,32 @@ library dashboard;
 import 'dart:developer';
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-// import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:project_management/app/constans/app_constants.dart';
-import 'package:project_management/app/shared_components/chatting_card.dart';
-import 'package:project_management/app/shared_components/get_premium_card.dart';
-import 'package:project_management/app/shared_components/list_profil_image.dart';
-import 'package:project_management/app/shared_components/progress_card.dart';
-import 'package:project_management/app/shared_components/progress_report_card.dart';
-import 'package:project_management/app/shared_components/responsive_builder.dart';
-import 'package:project_management/app/shared_components/upgrade_premium_card.dart';
-import 'package:project_management/app/shared_components/project_card.dart';
-import 'package:project_management/app/shared_components/search_field.dart';
-import 'package:project_management/app/shared_components/selection_button.dart';
-import 'package:project_management/app/shared_components/task_card.dart';
-import 'package:project_management/app/shared_components/today_text.dart';
-import 'package:project_management/app/utils/helpers/app_helpers.dart';
-
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get.dart';
+
+import '../../../../constans/app_constants.dart';
+import '../../../../shared_components/chatting_card.dart';
+import '../../../../shared_components/get_premium_card.dart';
+import '../../../../shared_components/list_profil_image.dart';
+import '../../../../shared_components/progress_card.dart';
+import '../../../../shared_components/progress_report_card.dart';
+import '../../../../shared_components/project_card.dart';
+import '../../../../shared_components/responsive_builder.dart';
+import '../../../../shared_components/search_field.dart';
+import '../../../../shared_components/selection_button.dart';
+import '../../../../shared_components/task_card.dart';
+import '../../../../shared_components/today_text.dart';
+import '../../../../shared_components/upgrade_premium_card.dart';
+import '../../../../utils/helpers/app_helpers.dart';
 
 // binding
 part '../../bindings/dashboard_binding.dart';
-
 // controller
 part '../../controllers/dashboard_controller.dart';
-
 // models
 part '../../models/profile.dart';
-
 // component
 part '../components/active_project_card.dart';
 part '../components/header.dart';
@@ -42,7 +39,7 @@ part '../components/sidebar.dart';
 part '../components/team_member.dart';
 
 class DashboardScreen extends GetView<DashboardController> {
-  const DashboardScreen({Key? key}) : super(key: key);
+  const DashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -103,16 +100,12 @@ class DashboardScreen extends GetView<DashboardController> {
                     _buildHeader(onPressedMenu: () => controller.openDrawer()),
                     const SizedBox(height: kSpacing * 2),
                     _buildProgress(
-                      axis: (constraints.maxWidth < 950)
-                          ? Axis.vertical
-                          : Axis.horizontal,
+                      axis: (constraints.maxWidth < 950) ? Axis.vertical : Axis.horizontal,
                     ),
                     const SizedBox(height: kSpacing * 2),
                     _buildTaskOverview(
                       data: controller.getAllTask(),
-                      headerAxis: (constraints.maxWidth < 850)
-                          ? Axis.vertical
-                          : Axis.horizontal,
+                      headerAxis: (constraints.maxWidth < 850) ? Axis.vertical : Axis.horizontal,
                       crossAxisCount: 6,
                       crossAxisCellCount: (constraints.maxWidth < 950)
                           ? 6
@@ -328,8 +321,7 @@ class DashboardScreen extends GetView<DashboardController> {
                 onPressedComments: () {},
               );
       },
-      staggeredTileBuilder: (int index) =>
-          StaggeredTile.fit((index == 0) ? crossAxisCount : crossAxisCellCount),
+      staggeredTileBuilder: (int index) => StaggeredTile.fit((index == 0) ? crossAxisCount : crossAxisCellCount),
     );
   }
 
@@ -353,8 +345,7 @@ class DashboardScreen extends GetView<DashboardController> {
           itemBuilder: (context, index) {
             return ProjectCard(data: data[index]);
           },
-          staggeredTileBuilder: (int index) =>
-              StaggeredTile.fit(crossAxisCellCount),
+          staggeredTileBuilder: (int index) => StaggeredTile.fit(crossAxisCellCount),
         ),
       ),
     );
