@@ -4,7 +4,7 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.4.0-99.0.dev <4.0.0'
+  sdk: ">=3.4.0-99.0.dev <4.0.0"
 
 dependencies:
   flutter:
@@ -14,7 +14,6 @@ dependencies:
   logger: ^2.0.2+1
   dio: ^5.4.0
   provider: ^6.1.1
-  google_fonts: ^6.1.0
   flutter_secure_storage: ^9.0.0
   flutter_svg: ^2.0.9
   flutter_launcher_icons: ^0.13.1
@@ -30,7 +29,8 @@ dependencies:
   concentric_transition: ^1.0.3
   google_ml_kit: ^0.13.0
   image_picker: ^0.8.7+1
-  
+  pdftron_flutter: ^1.0.1-28
+
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true

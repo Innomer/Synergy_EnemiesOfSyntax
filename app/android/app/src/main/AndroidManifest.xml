@@ -1,8 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+ <uses-permission android:name="android.permission.INTERNET" />
+	  <!-- Required to read and write documents from device storage -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	  <!-- Required if you want to record audio annotations -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <application
         android:label="synergy"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+        <meta-data
+            android:name="pdftron_license_key"
+            android:value="${pdftronLicenseKey}"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
 import '../auth/login_screen.dart';
 
@@ -24,7 +24,7 @@ class OnboardingScreen extends StatelessWidget {
                 Text(
                   "Travel with us",
                   style: TextStyle(
-                    fontFamily: GoogleFonts.merriweather().fontFamily,
+                    // fontFamily: GoogleFonts.merriweather().fontFamily,
                     fontSize: 36,
                     fontWeight: FontWeight.bold,
                   ),

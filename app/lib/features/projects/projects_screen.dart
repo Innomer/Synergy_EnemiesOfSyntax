@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:pdftron_flutter/pdftron_flutter.dart';
 import 'package:synergy/utils/utils.dart';
 
 class ProjectsScreen extends StatefulWidget {
@@ -159,7 +160,10 @@ class ProjectItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Config config = new Config();
+        PdftronFlutter.openDocument("https://www.pdftron.com/webviewer/demo/gallery/Report_2011.pdf", config: config);
+      },
       child: Container(
         width: 150,
         height: 150,
