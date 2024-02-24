@@ -31,6 +31,9 @@ target 'Runner' do
   use_frameworks!
   use_modular_headers!
 
+  pod 'PDFTron', podspec: 'https://pdftron.com/downloads/ios/flutter/pdftron/latest.podspec'
+  pod 'PDFTronTools', podspec: 'https://pdftron.com/downloads/ios/flutter/pdftron-tools/latest.podspec'
+
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
   target 'RunnerTests' do
     inherit! :search_paths

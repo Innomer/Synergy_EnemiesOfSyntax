@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
 import 'palette.dart';
 import 'typography.dart';
@@ -20,7 +20,7 @@ ThemeData lightTheme() => ThemeData(
         iconTheme: const IconThemeData(color: Palette.black),
         titleTextStyle: Typo.titleLarge.copyWith(color: Palette.black),
       ),
-      fontFamily: GoogleFonts.montserrat().fontFamily,
+      // fontFamily: GoogleFonts.montserrat().fontFamily,
       textTheme: const TextTheme(
         displayLarge: Typo.displayLarge,
         displayMedium: Typo.displayMedium,
