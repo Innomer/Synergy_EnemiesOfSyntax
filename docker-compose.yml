@@ -1,0 +1,28 @@
+version: "1"
+services:
+  backend_docstruct:
+    image: backend_docstruct
+    env_file:
+      - "./backend/.env"
+    build:
+      context: ./backend
+    ports:
+      - "3001:3001"
+
+  # web_docstruct:
+  #   image: web_docstruct
+  #   env_file:
+  #     - "./web_docstruct/.env"
+  #   build:
+  #     context: ./web_docstruct
+  #   ports:
+  #     - "3000:3000"
+
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "2001:80"
+    depends_on:
+      - "backend_docstruct"
+      # - "web_docstruct"
