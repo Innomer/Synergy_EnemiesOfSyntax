@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 
 //components
 import Navbar from "@/components/Navbar";
+import { Cmdk } from "@/app/(home)/_components/navbar/cmdk";
 
 export default async function MainLayout({
   children,
@@ -17,6 +18,7 @@ export default async function MainLayout({
   return (
     <>
       <Navbar />
+      <Cmdk />
       <main>{children}</main>
     </>
   );

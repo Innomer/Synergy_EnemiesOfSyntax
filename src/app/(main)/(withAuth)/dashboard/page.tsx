@@ -31,9 +31,9 @@ const EmployeeDashboard = dynamic(() => import("./_components/employee"), {
 export default async function Dashboard() {
   const session = (await getAuthSession()) as Session;
 
-  return session.user.role === "employee" || session.user.role === "user" ? (
+  return session.user.role === "user" ? (
     <EmployeeDashboard />
-  ) : session.user.role === "companyAdmin" ? (
+  ) : session.user.role === "admin" ? (
     <div className="p-12 mt-4">
       <CompanyAdminDashboard />
     </div>

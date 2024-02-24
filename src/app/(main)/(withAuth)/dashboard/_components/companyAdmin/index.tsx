@@ -30,7 +30,6 @@ import { columns, users, statusOptions } from "./data";
 import { capitalize } from "./utils";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { type SelectEmployee } from "@/lib/db/schema/roleBased/employees";
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
   active: "success",
@@ -64,25 +63,6 @@ export default function CompanyAdminDashboard() {
     direction: "ascending",
   });
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<SelectEmployee[]>();
-
-  useEffect(() => {
-    async function getData() {
-      try {
-        setLoading(true);
-        const resp = await axios.get("/api/get-all-employees");
-        console.log(resp.data.data);
-        setData(resp.data.data);
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    getData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const [page, setPage] = React.useState(1);
 

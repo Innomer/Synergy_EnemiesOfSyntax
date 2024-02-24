@@ -15,7 +15,6 @@ export default function HomeLayout({
       <div className={GeistSans.className}>
         <ActiveSectionProvider>
           <Navbar />
-          <Cmdk />
           <main>{children}</main>
         </ActiveSectionProvider>
         <Footer />

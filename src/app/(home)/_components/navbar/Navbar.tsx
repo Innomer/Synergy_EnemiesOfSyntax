@@ -79,9 +79,6 @@ export const Navbar = () => {
           </Tabs>
         </NavbarItem>
 
-        <NavbarItem className="hidden md:flex">
-          <SearchButton />
-        </NavbarItem>
       </NavbarContent>
 
       <NavbarContent
@@ -121,9 +118,6 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarMenu>
-        <NavbarMenuItem>
-          <SearchButton />
-        </NavbarMenuItem>
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {navbarLinksForHome.map((navbarLink, index) => (
             <NavbarMenuItem key={`${index}`}>

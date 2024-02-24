@@ -19,6 +19,7 @@ import {
   navbarLinksForDashboardEmployee,
 } from "./NavLinks";
 import { siteConfig } from "@/lib/config/siteConfig";
+import SearchButton from "@/app/(home)/_components/navbar/SearchButton";
 
 export default async function Navbar() {
   const auth = (await getAuthSession()) as Session;
@@ -27,16 +28,22 @@ export default async function Navbar() {
     <NextUINavbar maxWidth="full" position="sticky" aria-selected isBordered>
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand className="gap-3 max-w-fit mr-6">
-          <NextLink className="flex justify-start items-center gap-x-2" href="/">
+          <NextLink
+            className="flex justify-start items-center gap-x-2"
+            href="/"
+          >
             {siteConfig.logo}
             <p className="font-bold text-inherit text-lg uppercase">
               {siteConfig.name}
             </p>
           </NextLink>
         </NavbarBrand>
+        <NavbarMenuItem>
+          <SearchButton />
+        </NavbarMenuItem>
 
         <NavbarContent className="hidden md:flex">
-          {auth.user.role === "companyAdmin" &&
+          {auth.user.role === "admin" &&
             navbarLinksForDashboardAdmin.map((navbarLink, index) => (
               <NavbarItem key={index}>
                 <Link
@@ -48,9 +55,7 @@ export default async function Navbar() {
                 </Link>
               </NavbarItem>
             ))}
-          {(auth.user.role === "employee" ||
-            auth.user.role === "siteAdmin" ||
-            auth.user.role === "user") &&
+          {auth.user.role === "user" &&
             navbarLinksForDashboardEmployee.map((navbarLink, index) => (
               <NavbarItem key={index}>
                 <Link
@@ -90,7 +95,7 @@ export default async function Navbar() {
       </NavbarContent>
 
       <NavbarMenu>
-        {auth.user.role === "companyAdmin" &&
+        {auth.user.role === "admin" &&
           navbarLinksForDashboardAdmin.map((navbarLink, index) => (
             <NavbarMenuItem key={`${index}`}>
               <Link href={navbarLink.href} size="lg">
@@ -98,7 +103,7 @@ export default async function Navbar() {
               </Link>
             </NavbarMenuItem>
           ))}
-        {(auth.user.role === "employee" || auth.user.role === "siteAdmin") &&
+        {auth.user.role === "user" &&
           navbarLinksForDashboardEmployee.map((navbarLink, index) => (
             <NavbarMenuItem key={`${index}`}>
               <Link href={navbarLink.href} size="lg">

@@ -27,7 +27,7 @@ export default function SearchButton() {
 
   return (
     <Button
-      aria-label="Stock price lookup..."
+      aria-label="Search file..."
       className="text-sm font-normal text-default-800 bg-default-400/20 dark:bg-default-500/20"
       endContent={
         <Kbd className="hidden py-0.5 px-2 text-default-600 lg:inline-block" keys={commandKey}>
@@ -43,7 +43,7 @@ export default function SearchButton() {
       }
       onPress={handleOpenCmdk}
     >
-      Stock price lookup...
+      Search file...
     </Button>
   );
 }

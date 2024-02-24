@@ -17,7 +17,7 @@ export default function SignupPage() {
             <div className="grid flex-wrap items-center justify-center grid-cols-1 mx-auto shadow-sm group-hover:shadow-lg transition-shadow lg:grid-cols-2 rounded-xl">
               <div className="px-6 py-3 ">
                 <div className="flex flex-col space-y-2 text-center mb-6 mt-4">
-                  <Lock className="animate-pulse" />
+                  <Lock className="animate-pulse mx-auto" />
                   <h1 className="text-2xl font-semibold tracking-tight">
                     Register
                   </h1>

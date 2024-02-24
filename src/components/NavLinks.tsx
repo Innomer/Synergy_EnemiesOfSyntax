@@ -51,10 +51,6 @@ export const navbarLinksForDashboardAdmin = [
     title: "Company",
     href: "/company",
   },
-  {
-    title: "Retirement Calculator",
-    href: "/retirement-calculator",
-  },
 ] as const;
 export type NavbarLinksForDashboardAdminType =
   (typeof navbarLinksForDashboardAdmin)[number]["title"];
@@ -67,10 +63,6 @@ export const navbarLinksForDashboardEmployee = [
   {
     title: "Chatbot",
     href: "/chatbot",
-  },
-  {
-    title: "Retirement Calculator",
-    href: "/retirement-calculator",
   },
 ] as const;
 export type NavbarLinksForDashboardEmployeeType =

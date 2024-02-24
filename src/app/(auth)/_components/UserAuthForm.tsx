@@ -36,11 +36,14 @@ export default function UserAuthForm({ isSignup }: UserAuthFormProps) {
     setIsLoadingGoogle(true);
     try {
       const resp = await signIn("google", {
-        redirect: false,
-        callbackUrl: "/dashboard",
+        redirect:false,
       });
-      toast.success("Logged in successfully");
-      router.push("/dashboard");
+      console.log(resp);
+      if (resp?.ok) {
+        toast.success("asdasd");
+        console.log("logged in sucess!!");
+        router.push("/dashboard");
+      }
     } catch (err) {
       toast.error("Error logging in");
     } finally {
@@ -176,17 +179,6 @@ export default function UserAuthForm({ isSignup }: UserAuthFormProps) {
           </Button>
         </div>
       </div>
-
-      {/* <div className="flex justify-between px-4 mt-4">
-        <p className="text-center text-sm ">New here?</p>
-        <Link
-          color="foreground"
-          href="/signup"
-          className="text-sm underline underline-offset-4"
-        >
-          Sign in
-        </Link>
-      </div> */}
 
       <div className="relative mx-24 md:mx-20 lg:mx-1 mt-6">
         <div className="absolute inset-0 flex items-center">
