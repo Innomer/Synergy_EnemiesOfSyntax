@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 // app.use('/', loginRoutes);
-app.use('/', async (req, res, next) => {
+app.use('/test', async (req, res, next) => {
     res.send("Welcome to Synergy");
 });
 app.use('/admin', adminRoutes);
