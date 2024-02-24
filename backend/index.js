@@ -24,7 +24,10 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/', loginRoutes);
+// app.use('/', loginRoutes);
+app.use('/', async (req, res, next) => {
+    res.send("Welcome to Synergy");
+});
 app.use('/admin', adminRoutes);
 app.use('/file', fileUploadRoutes);
 app.use('/chat', chatRoutes);
