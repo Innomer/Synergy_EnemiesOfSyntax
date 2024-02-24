@@ -11,7 +11,6 @@ const storage = multer.diskStorage({
         const folder = getFolderByExtension(ext,file.originalname);
         const destination = path.join('static', project, folder);
         fs.mkdirSync(destination, { recursive: true });
-
         cb(null, destination);
     },
     filename: (req, file, cb) => {

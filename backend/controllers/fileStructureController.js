@@ -11,31 +11,35 @@ async function getFileStructureByProject(projectName) {
         const fileStructure = {};
 
         files.forEach(file => {
-            const filePath = path.relative('static', file.path);
-            const versionedFilePath = path.relative('versions', file.version);
+            if(file.path && file.version){
 
-            // Split the file path into an array
-            const filePathArray = filePath.split(path.sep);
-
-            // Build the file structure
-            let currentLevel = fileStructure;
-            filePathArray.forEach((folder, index) => {
-                currentLevel[folder] = currentLevel[folder] || {};
-
-                if (index === filePathArray.length - 1) {
-                    // Leaf node representing the file
-                    currentLevel[folder] = {
-                        filename: file.filename,
-                        version: versionedFilePath,
-                        commitMessage: file.commitMessage,
-                        commitId:file.commitId,
-                        timestamp: file.timestamp,
-                        tag: file.tag,
-                        filepath: `${process.env.IP}/download/${encodeURIComponent(file.path)}`,                    };
-                }
-
-                currentLevel = currentLevel[folder];
-            });
+                const filePath = path.relative('static', file.path);
+                const versionedFilePath = path.relative('versions', file.version);
+    
+                // Split the file path into an array
+                const filePathArray = filePath.split(path.sep);
+    
+                // Build the file structure
+                let currentLevel = fileStructure;
+                filePathArray.forEach((folder, index) => {
+                    currentLevel[folder] = currentLevel[folder] || {};
+    
+                    if (index === filePathArray.length - 1) {
+                        // Leaf node representing the file
+                        currentLevel[folder] = {
+                            filename: file.filename,
+                            version: versionedFilePath,
+                            commitMessage: file.commitMessage,
+                            commitId: file.commitId,
+                            timestamp: file.timestamp,
+                            tag: file.tag,
+                            filepath: `${process.env.IP}/download/${encodeURIComponent(file.path)}`,
+                        };
+                    }
+    
+                    currentLevel = currentLevel[folder];
+                });
+            }
         });
 
         return fileStructure;
@@ -65,14 +69,14 @@ async function getAllProjectsFileStructure() {
     }
 }
 
-async function getAllProjects(req,res,next){
+async function getAllProjects(req, res, next) {
     try {
         console.log('Fetching projects')
         const projects = await FileModel.distinct('project');
         res.json(projects);
     } catch (error) {
         console.error(error);
-        res.json({error:'Internal Server Error'});
+        res.json({ error: 'Internal Server Error' })
     }
 }
 
