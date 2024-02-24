@@ -71,6 +71,9 @@ dependencies:
   '@nextui-org/theme':
     specifier: ^2.1.9
     version: 2.1.17(tailwindcss@3.3.5)
+  '@pdftron/webviewer':
+    specifier: ^10.7.2
+    version: 10.7.2
   '@react-aria/utils':
     specifier: ^3.20.0
     version: 3.22.0(react@18.2.0)
@@ -2647,6 +2650,10 @@ packages:
 
   /@panva/hkdf@1.1.1:
     resolution: {integrity: sha512-dhPeilub1NuIG0X5Kvhh9lH4iW3ZsHlnzwgwbOlgwQ2wG1IqFzsgHqmKPk3WzsdWAeaxKJxgM0+W433RmN45GA==}
+    dev: false
+
+  /@pdftron/webviewer@10.7.2:
+    resolution: {integrity: sha512-GS5jPFfQqLMkQ0z9TAf9C5FVxTFhSSJ8NckoOcIrN6NlLXqe3XIFO7iQeNy74aD8FAz/UfYQY2J3KqLT2p1sAw==}
     dev: false
 
   /@pkgjs/parseargs@0.11.0:

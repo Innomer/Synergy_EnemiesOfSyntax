@@ -53,5 +53,7 @@ export async function POST(req: Request) {
         user: newUser[0],
       });
     }
-  } catch (err) {}
+  } catch (err) {
+    return NextResponse.error(err )
+  }
 }

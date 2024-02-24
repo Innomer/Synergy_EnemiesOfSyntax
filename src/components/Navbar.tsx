@@ -43,7 +43,7 @@ export default async function Navbar() {
         </NavbarMenuItem>
 
         <NavbarContent className="hidden md:flex">
-          {auth.user.role === "admin" &&
+          {
             navbarLinksForDashboardAdmin.map((navbarLink, index) => (
               <NavbarItem key={index}>
                 <Link
@@ -55,7 +55,7 @@ export default async function Navbar() {
                 </Link>
               </NavbarItem>
             ))}
-          {auth.user.role === "user" &&
+          {/* {auth.user.role === "user" &&
             navbarLinksForDashboardEmployee.map((navbarLink, index) => (
               <NavbarItem key={index}>
                 <Link
@@ -66,7 +66,7 @@ export default async function Navbar() {
                   {navbarLink.title}
                 </Link>
               </NavbarItem>
-            ))}
+            ))} */}
         </NavbarContent>
       </NavbarContent>
 
@@ -95,7 +95,7 @@ export default async function Navbar() {
       </NavbarContent>
 
       <NavbarMenu>
-        {auth.user.role === "admin" &&
+        {/* {auth.user.role === "admin" &&
           navbarLinksForDashboardAdmin.map((navbarLink, index) => (
             <NavbarMenuItem key={`${index}`}>
               <Link href={navbarLink.href} size="lg">
@@ -110,7 +110,7 @@ export default async function Navbar() {
                 {navbarLink.title}
               </Link>
             </NavbarMenuItem>
-          ))}
+          ))} */}
       </NavbarMenu>
     </NextUINavbar>
   );

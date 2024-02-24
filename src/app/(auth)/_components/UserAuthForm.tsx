@@ -33,22 +33,24 @@ export default function UserAuthForm({ isSignup }: UserAuthFormProps) {
   });
 
   const handleLoginWithGoogle = async () => {
-    setIsLoadingGoogle(true);
-    try {
-      const resp = await signIn("google", {
-        redirect:false,
-      });
-      console.log(resp);
-      if (resp?.ok) {
-        toast.success("asdasd");
-        console.log("logged in sucess!!");
-        router.push("/dashboard");
-      }
-    } catch (err) {
-      toast.error("Error logging in");
-    } finally {
-      setIsLoadingGoogle(false);
-    }
+    router.push("/dashboard");
+
+    // setIsLoadingGoogle(true);
+    // try {
+    //   const resp = await signIn("google", {
+    //     redirect:false,
+    //   });
+    //   console.log(resp);
+    //   if (resp?.ok) {
+    //     toast.success("asdasd");
+    //     console.log("logged in sucess!!");
+    //     router.push("/dashboard");
+    //   }
+    // } catch (err) {
+    //   toast.error("Error logging in");
+    // } finally {
+    //   setIsLoadingGoogle(false);
+    // }
   };
 
   const hangleLoginWithCredentials = async () => {

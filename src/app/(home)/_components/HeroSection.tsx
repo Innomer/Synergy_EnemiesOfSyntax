@@ -12,7 +12,7 @@ import { subtitleVariants, titleVariants } from "@/components/Variants";
 function HeroSection() {
   return (
     <>
-      <div className="h-[50rem] w-full dark:bg-black bg-white transform-gpu dark:bg-dot-[#cce3fd]/[0.2] bg-dot-[#002e62]/[0.2] relative flex items-center justify-center">
+      <div className="h-[33rem] w-full dark:bg-black bg-white transform-gpu dark:bg-dot-[#cce3fd]/[0.2] bg-dot-[#002e62]/[0.2] relative flex items-center justify-center">
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
         <div className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
           <motion.div
