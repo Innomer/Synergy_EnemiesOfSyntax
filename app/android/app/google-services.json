@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "562664435227",
+    "project_id": "synergy-abaf6",
+    "storage_bucket": "synergy-abaf6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562664435227:android:7ef440fb955c73d8d712be",
+        "android_client_info": {
+          "package_name": "com.eos.synergy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvXCAJrLbWrt-ru61NB5yXMwqasZtUs1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
