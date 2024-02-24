@@ -25,16 +25,25 @@ function getFolderByExtension(extension) {
         case '.jpeg':
         case '.png':
             return 'images';
+        case '.doc':
+        case '.docx':
+            return 'word';
         case '.pdf':
+        case '.txt':
+        case '.rtf':
             return 'documents';
+        case '.xls':
+        case '.xlsx':
+        case '.csv':
+            return 'excel';
         case '.dwg':
         case '.dxf':
         case '.dgn':
         case '.dwf':
             return 'cad';
-        case '.zip':
-        case '.rar':
-            return 'zips';
+        // case '.zip':
+        // case '.rar':
+        //     return 'zips';
         default:
             return 'misc';
     }

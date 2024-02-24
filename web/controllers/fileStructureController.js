@@ -30,7 +30,7 @@ async function getFileStructureByProject(projectName) {
                         commitMessage: file.commitMessage,
                         commitId:file.commitId,
                         timestamp: file.timestamp,
-                    };
+                        filepath: `${process.env.IP}/download/${encodeURIComponent(file.path)}`,                    };
                 }
 
                 currentLevel = currentLevel[folder];

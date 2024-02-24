@@ -2,11 +2,12 @@ require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const adminRoutes = require('./routes/adminRoutes');
 const loginRoutes = require('./routes/loginRegRoutes');
-const fileUploadRoutes=require('./routes/fileUploadRoutes');
-const chatRoutes=require('./routes/chatRoutes');
+const fileUploadRoutes = require('./routes/fileUploadRoutes');
+const chatRoutes = require('./routes/chatRoutes');
 const bodyParser = require('body-parser');
 
 
@@ -25,9 +26,17 @@ app.use(express.json());
 
 app.use('/', loginRoutes);
 app.use('/admin', adminRoutes);
-app.use('/file',fileUploadRoutes);
-app.use('/chat',chatRoutes);
+app.use('/file', fileUploadRoutes);
+app.use('/chat', chatRoutes);
 
+app.use('/static', express.static(path.join(__dirname, 'static')));
+
+app.get('/download/:filename', (req, res) => {
+    const filename = decodeURIComponent(req.params.filename);
+    const filePath = path.join(__dirname,filename);
+
+    res.download(filePath, path.basename(filePath));
+});
 // const io=socket(app);
 // require('./controllers/chatController')(io);
 app.use(function (err, req, res, next) {

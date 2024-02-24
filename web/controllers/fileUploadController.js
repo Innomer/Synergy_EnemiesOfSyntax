@@ -62,7 +62,7 @@ const singleFileUpload = async (req, res, next) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-const commitRollback = async function(commitId) {
+const commitRollback = async function (commitId) {
     try {
         const filesToRevert = await FileModel.find({ commitId });
 
@@ -103,7 +103,7 @@ const fileRollback = async (req, res, next) => {
         await fs.access(file.version)
         await fs.unlink(file.version)
 
-        const versionPath = path.join('versions', file.project, file.filename+"_"+versionId);
+        const versionPath = path.join('versions', file.project, file.filename + "_" + versionId);
 
         // Ensure the version exists before rolling back
         try {
@@ -130,6 +130,7 @@ const multipleFileUpload = async (req, res, next) => {
         const files = req.files;
         const { project, commitMessage } = req.body;
         const filesNotUpdated = [];
+        const curTime=Date.now();
         // Ensure req.body.project is not null or undefined
         if (!project) {
             return res.status(400).json({ error: 'Project Name is required.' });
@@ -166,9 +167,9 @@ const multipleFileUpload = async (req, res, next) => {
                     ...fileData,
                     version: versionedFilePath,
                     commitMessage,
-                    timestamp: Date.now(),
+                    timestamp: curTime,
                     hash: newFileHash,
-                    commitId: Date.now().toString(), // Unique commit ID
+                    commitId: curTime.toString(), // Unique commit ID
                 });
             }
             else {
@@ -186,6 +187,47 @@ const multipleFileUpload = async (req, res, next) => {
     }
 };
 
+const getCommitHistoryForFile = async function (projectName, filename) {
+    try {
+        const commits = await FileModel.find({ project: projectName, filename })
+            .sort({ timestamp: 'desc' });
+            // .select('commitId commitMessage timestamp filepath');
+
+        const commitHistory = commits.map(commit => ({
+            commitId: commit.commitId,
+            commitMessage: commit.commitMessage,
+            timestamp: commit.timestamp,
+            filepath: `${process.env.IP}/download/${encodeURIComponent(commit.version)}`,
+        }));
+
+        return commitHistory;
+    } catch (error) {
+        console.error(error);
+        throw new Error('Failed to fetch commit history for the file.');
+    }
+}
+
+const getCommitHistoryForProject = async function (projectName) {
+    try {
+        const commits = await FileModel.find({ project: projectName })
+            .sort({ timestamp: 'desc' });
+            // .select('commitId commitMessage timestamp filepath filename');
+
+        const commitHistory = commits.map(commit => ({
+            commitId: commit.commitId,
+            commitMessage: commit.commitMessage,
+            timestamp: commit.timestamp,
+            filepath: `${process.env.IP}/download/${encodeURIComponent(commit.version)}`,
+            filename: commit.filename
+        }));
+
+        return commitHistory;
+    } catch (error) {
+        console.error(error);
+        throw new Error('Failed to fetch commit history for the project.');
+    }
+}
+
 // Function to calculate the hash of a file
 async function calculateFileHash(filePath) {
     const hash = crypto.createHash('sha256');
@@ -194,4 +236,4 @@ async function calculateFileHash(filePath) {
     return hash.digest('hex');
 }
 
-module.exports = { singleFileUpload, multipleFileUpload, commitRollback, fileRollback};
+module.exports = { singleFileUpload, multipleFileUpload, commitRollback, fileRollback, getCommitHistoryForFile, getCommitHistoryForProject };
