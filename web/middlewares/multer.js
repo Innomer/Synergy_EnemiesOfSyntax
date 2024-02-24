@@ -40,20 +40,8 @@ function getFolderByExtension(extension) {
     }
 }
 
-// const maxSize=1*1000*1000; //1MB
-
 var upload = multer({
     storage: storage,
-    // fileFilter:function(req,file,cb){
-    //     // var fileTypes=/
-    //     var mimetype=fileTypes.test(file.mimetype);
-    //     var extname=fileTypes.test(path.extname(file.originalname).toLowerCase());
-    //     if(mimetype&&extname){
-    //         return cb(null,true);
-    //     }
-    //     cb("Error: File Upload only supports"+fileTypes);
-    // }
-    // limits:{fileSize:maxSize}
 })
 
 module.exports = { upload };

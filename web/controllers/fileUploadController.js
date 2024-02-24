@@ -9,7 +9,7 @@ const singleFileUpload = async (req, res, next) => {
 
         // Ensure req.body.project is not null or undefined
         if (!project) {
-            return res.status(400).json({ error: 'Project ID is required.' });
+            return res.status(400).json({ error: 'Project Name is required.' });
         }
 
         if (!commitMessage) {
@@ -62,19 +62,81 @@ const singleFileUpload = async (req, res, next) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+const commitRollback = async function(commitId) {
+    try {
+        const filesToRevert = await FileModel.find({ commitId });
+
+        await Promise.all(filesToRevert.map(async file => {
+            const versionPath = path.join('versions', file.project, file.filename);
+
+            // Ensure the version exists before reverting
+            try {
+                await fs.access(versionPath);
+            } catch (error) {
+                console.error(`Version not found for file: ${file.filename}`);
+                return;
+            }
+
+            // Remove the current file
+            await fs.unlink(file.path);
+
+            // Restore the specified version
+            await fs.copyFile(versionPath, file.path);
+        }));
+
+        return { message: 'Revert to commit successful.' };
+    } catch (error) {
+        console.error(error);
+        throw new Error('Failed to revert to commit.');
+    }
+}
+
+const fileRollback = async (req, res, next) => {
+    try {
+        const { fileName, versionId } = req.params;
+
+        const file = await FileModel.findOne({ filename: fileName }, {}, { sort: { timestamp: -1 } });
+
+        if (!file) {
+            return res.status(404).json({ error: 'File not found.' });
+        }
+        await fs.access(file.version)
+        await fs.unlink(file.version)
+
+        const versionPath = path.join('versions', file.project, file.filename+"_"+versionId);
+
+        // Ensure the version exists before rolling back
+        try {
+            await fs.access(versionPath);
+        } catch (error) {
+            return res.status(404).json({ error: 'Version not found.' });
+        }
+
+        // Remove the current file
+        await fs.unlink(file.path);
+
+        // Restore the specified version
+        await fs.copyFile(versionPath, file.path);
+
+        res.json({ message: 'Rollback successful.' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
 
 const multipleFileUpload = async (req, res, next) => {
     try {
+        const files = req.files;
         const { project, commitMessage } = req.body;
         const filesNotUpdated = [];
         // Ensure req.body.project is not null or undefined
         if (!project) {
-            return res.status(400).json({ error: 'Project ID is required.' });
+            return res.status(400).json({ error: 'Project Name is required.' });
         }
         if (!commitMessage) {
             commitMessage = new Date().toISOString();
         }
-        const files = req.files;
         await Promise.all(req.files.map(async file => {
             const fileData = {
                 originalname: file.originalname,
@@ -132,4 +194,4 @@ async function calculateFileHash(filePath) {
     return hash.digest('hex');
 }
 
-module.exports = { singleFileUpload, multipleFileUpload };
+module.exports = { singleFileUpload, multipleFileUpload, commitRollback, fileRollback};

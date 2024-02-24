@@ -1,5 +1,5 @@
 const express = require('express');
-const { singleFileUpload, multipleFileUpload } = require('../controllers/fileUploadController');
+const { singleFileUpload, multipleFileUpload, commitRollback, fileRollback } = require('../controllers/fileUploadController');
 const { upload } = require('../middlewares/multer');
 const router = express.Router();
 const fileStructureController = require('../controllers/fileStructureController');
@@ -27,5 +27,17 @@ router.get('/fs', async (req, res) => {
     }
 });
 
+router.post('/rollback/:fileName/:versionId', fileRollback);
+
+router.post('/revert-to-commit/:commitId', async (req, res) => {
+    try {
+        const { commitId } = req.params;
+        const result = await commitRollback(commitId);
+        res.json(result);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 module.exports = router;

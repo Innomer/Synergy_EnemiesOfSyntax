@@ -28,6 +28,7 @@ async function getFileStructureByProject(projectName) {
                         filename: file.filename,
                         version: versionedFilePath,
                         commitMessage: file.commitMessage,
+                        commitId:file.commitId,
                         timestamp: file.timestamp,
                     };
                 }
@@ -48,12 +49,12 @@ async function getAllProjectsFileStructure() {
         const projects = await FileModel.distinct('project');
 
         // Create an object to store the file structure for each project
-        const allProjectsFileStructure = {};
+        const allProjectsFileStructure = [];
 
         // Fetch file structure for each project
         for (const project of projects) {
             const projectFileStructure = await getFileStructureByProject(project);
-            allProjectsFileStructure[project] = projectFileStructure;
+            allProjectsFileStructure.push(projectFileStructure);
         }
 
         return allProjectsFileStructure;
