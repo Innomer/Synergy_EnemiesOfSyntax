@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { FileType2 } from "lucide-react";
 import {
   AppstoreOutlined,
-  MailOutlined,
   PlusCircleOutlined,
   SettingOutlined,
   ToolOutlined,
@@ -63,6 +63,9 @@ const App = ({
   };
   const [menuItems, setMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const checkDiffOfPDF = () =>{
+    router.push("/text-diff");
+  }
 
   useEffect(() => {
     async function getSideBarLinks() {
@@ -109,6 +112,19 @@ const App = ({
         );
         const staticBottomItems = [
           { type: "divider" },
+          getItem(
+            "Options",
+            "kjbkjb",
+            null,
+            [
+              getItem(
+                "PDF text diff",
+                "14",
+                <FileType2 onClick={checkDiffOfPDF} className="h-4 w-4"/>
+              ),
+            ],
+            "group"
+          ),
           getItem(
             "General",
             "grp",

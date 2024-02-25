@@ -7,6 +7,8 @@ import AboutSection from "./_components/AboutSection";
 import HeroSection from "./_components/HeroSection";
 import { getAuthSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { MacbookScroll } from "./_components/macbookScroll";
+import img from "@/assets/images/aestheticConstruction.webp";
 
 const FAQSection = dynamic(() => import("./_components/FAQSection"), {
   loading: () => (
@@ -35,6 +37,13 @@ export default async function HomePage() {
     <>
       <div id="hero" className="md:h-[500px] lg:h-[742px] xl:h-screen">
         <HeroSection />
+      </div>
+      <div id="hero" className="h-[500px] mb-[2000px]">
+        <MacbookScroll
+          src={"/aestheticConstruction.webp"}
+          showGradient
+          title="Making your drawings come ALIVE"
+        />
       </div>
       <div className="overflow-x-hidden" id="about">
         <AboutSection />

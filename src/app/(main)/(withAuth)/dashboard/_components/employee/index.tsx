@@ -14,11 +14,8 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { siteConfig } from "@/lib/config/siteConfig";
 import dayjs from "dayjs";
-import { Tooltip } from "@nextui-org/react";
 
-const { Header, Content, Footer } = Layout;
-
-type MenuItem = Required<MenuProps>["items"][number];
+const { Content } = Layout;
 
 export default function EmployeeDashboard() {
   const [collapsed, setCollapsed] = useState(false);
@@ -30,6 +27,12 @@ export default function EmployeeDashboard() {
   const [getCommitsForCurrentProject, setGetCommitsForCurrentProject] =
     useState([]);
   const [fileName, setFileName] = useState("");
+  const [compareDocumentCommit, setCompareDocumentCommit] = useState({
+    previousDocument: "",
+    comparisonDocument: "",
+  });
+  const [loadingForCompare, setLoadingForCompare] = useState(false);
+  const [loadingForRollback, setLoadingForRollback] = useState(false);
 
   const downloadCurrentFile = () => {
     if (!selectedDocument.key) {
@@ -44,16 +47,28 @@ export default function EmployeeDashboard() {
   };
   async function compareCommit(id, name) {
     try {
+      setLoadingForCompare(true);
       const { data } = await axios.post(
-        `${siteConfig.baseUrl}/file/compare/${name}/${id}`
+        `${siteConfig.baseUrl}/file/compare-versions`,
+        {
+          fileName: name,
+          commitId: id,
+        }
       );
-      console.log(data);
+      console.log(data.prevVersion);
+      setCompareDocumentCommit({
+        comparisonDocument: data.result.download_link,
+        previousDocument: data.prevVersion,
+      });
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoadingForCompare(false);
     }
   }
   async function rollbackCommit(id, name) {
     try {
+      setLoadingForRollback(true);
       const { data } = await axios.post(
         `${siteConfig.baseUrl}/file/rollback/${name}/${id}`
       );
@@ -62,14 +77,15 @@ export default function EmployeeDashboard() {
     } catch (err) {
       toast.error("There was an erorr in rolling back the commti");
       console.log(err);
+    } finally {
+      setLoadingForRollback(false);
     }
   }
-
-  async function getCommitData(filename) {
+  async function getCommitData(project, filename) {
     try {
       console.log(selectedDocument);
       const { data } = await axios.get(
-        `${siteConfig.baseUrl}/file/commit-history/file/Synergy/${filename}`
+        `${siteConfig.baseUrl}/file/commit-history/file/${project}/${filename}`
       );
       setGetCommitsForCurrentProject(data);
     } catch (err) {
@@ -88,7 +104,7 @@ export default function EmployeeDashboard() {
         url.split("/").pop().split("%5C").pop()
       );
       setFileName(fileNamee);
-      getCommitData(fileNamee);
+      getCommitData(pathParts[0], fileNamee);
 
       const formattedFileName = fileNamee
         .split(".")
@@ -155,41 +171,66 @@ export default function EmployeeDashboard() {
             {selectedDocument?.key && (
               <ApryseWebViewer url={selectedDocument?.key || ""} />
             )}
-            <Timeline
-              items={getCommitsForCurrentProject.map((commit: any, index) => ({
-                color: index === 0 ? "green" : "blue", // Adjust color based on some logic if necessary
-                children: (
+            <div className="flex justify-around">
+              <Timeline
+                items={getCommitsForCurrentProject.map(
+                  (commit: any, index) => ({
+                    color: index === 0 ? "green" : "blue", // Adjust color based on some logic if necessary
+                    children: (
+                      <>
+                        <div key={commit.commitId}>
+                          <p className="mr-3">
+                            {dayjs(commit.timestamp).format(
+                              "h:mma D MMMM, YYYY"
+                            )}
+                          </p>
+                          <p>{'"' + commit.commitMessage + '"'}</p>{" "}
+                        </div>
+                        {index !== 0 && (
+                          <div className="flex gap-x-3">
+                            <Button
+                              loading={loadingForRollback}
+                              size="small"
+                              onClick={() => {
+                                rollbackCommit(commit.commitId, fileName);
+                              }}
+                            >
+                              RollBack
+                            </Button>
+                            <Button
+                              loading={loadingForCompare}
+                              size="small"
+                              onClick={() => {
+                                compareCommit(commit.commitId, fileName);
+                              }}
+                            >
+                              Compare Commit
+                            </Button>
+                          </div>
+                        )}
+                      </>
+                    ),
+                  })
+                )}
+              />
+              {compareDocumentCommit.comparisonDocument &&
+                compareDocumentCommit.previousDocument && (
                   <>
-                    <div key={commit.commitId}>
-                      <p className="mr-3">
-                        {dayjs(commit.timestamp).format("h:mma D MMMM, YYYY")}
-                      </p>
-                      <p>{'"' + commit.commitMessage + '"'}</p>{" "}
+                    <div>
+                      <h1>Previous Commit</h1>
+                      <ApryseWebViewer
+                        url={compareDocumentCommit.previousDocument}
+                      />
                     </div>
-                    {index !== 0 && (
-                      <div className="flex gap-x-3">
-                        <Button
-                          size="small"
-                          onClick={() => {
-                            rollbackCommit(commit.commitId, fileName);
-                          }}
-                        >
-                          RollBack
-                        </Button>
-                        <Button
-                          size="small"
-                          onClick={() => {
-                            compareCommit(commit.commitId, fileName);
-                          }}
-                        >
-                          Compare Commit
-                        </Button>
-                      </div>
-                    )}
+                    <div>
+                      <h1>Comparison Commit</h1>
+                      <ApryseWebViewer
+                        url={compareDocumentCommit.comparisonDocument}
+                      />
+                    </div>
                   </>
-                ),
-              }))}
-            />
+                )}
+            </div>
           </div>
         </Content>
       </Layout>
