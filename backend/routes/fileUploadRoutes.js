@@ -3,9 +3,12 @@ const { singleFileUpload, multipleFileUpload, commitRollback, fileRollback, getC
 const { upload } = require('../middlewares/multer');
 const router = express.Router();
 const fileStructureController = require('../controllers/fileStructureController');
-const {FileModel} = require('../models/fileModel');
-const fs=require('fs').promises;
-
+const { FileModel } = require('../models/fileModel');
+const fs = require('fs').promises;
+const readline = require('readline');
+const diff = require('diff');
+const path=require('path');
+const axios = require('axios');
 
 router.post('/uploadSingle', upload.single('file'), singleFileUpload);
 router.post('/uploadMultiple', upload.array('files', parseInt(process.env.MULTIFILECOUNT)), multipleFileUpload);
@@ -108,6 +111,135 @@ router.delete('/delete/:projectName/:fileName', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+router.post('/compare-files', (req, res) => {
+    const { oldFilePath, newFilePath, outputFilePath } = req.body;
+
+    if (!oldFilePath || !newFilePath || !outputFilePath) {
+        return res.status(400).json({ error: 'Please provide oldFilePath, newFilePath, and outputFilePath in the request body.' });
+    }
+
+    compareFiles(oldFilePath, newFilePath, outputFilePath)
+        .then(() => {
+            res.json({ message: 'Comparison completed.', path: outputFilePath });
+        })
+        .catch((error) => {
+            console.error('Error comparing files:', error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        });
+});
+
+function compareFiles(oldFilePath, newFilePath, outputFilePath) {
+    return new Promise((resolve, reject) => {
+        const oldFileLines = [];
+        const newFileLines = [];
+
+        const oldFileReadStream = readline.createInterface({
+            input: fs.createReadStream(oldFilePath),
+            crlfDelay: Infinity,
+        });
+
+        const newFileReadStream = readline.createInterface({
+            input: fs.createReadStream(newFilePath),
+            crlfDelay: Infinity,
+        });
+
+        oldFileReadStream.on('line', (line) => {
+            oldFileLines.push(line);
+        });
+
+        newFileReadStream.on('line', (line) => {
+            newFileLines.push(line);
+        });
+
+        Promise.all([once(oldFileReadStream, 'close'), once(newFileReadStream, 'close')])
+            .then(() => {
+                const changes = getLineChanges(oldFileLines, newFileLines);
+
+                fs.writeFileSync(outputFilePath, changes.join('\n'), 'utf-8');
+
+                resolve();
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+}
+
+function getLineChanges(oldLines, newLines) {
+    const changes = [];
+
+    const lineDiff = diff.diffLines(oldLines.join('\n'), newLines.join('\n'));
+
+    lineDiff.forEach((part) => {
+        if (part.added || part.removed) {
+            const prefix = part.added ? '+ ' : part.removed ? '- ' : '  ';
+            changes.push(`${prefix}${part.value}`);
+        }
+    });
+
+    return changes;
+}
+
+function once(emitter, event) {
+    return new Promise((resolve) => {
+        emitter.once(event, resolve);
+    });
+}
+
+router.post('/compare-versions', async (req, res, next) => {
+    const { fileName, commitId } = req.body;
+
+    if (!fileName || !commitId) {
+        return res.status(400).json({ error: 'Please provide fileName and commitId in the request body.' });
+    }
+
+    try {
+        const { currentVersion, commitIdVersion } = await getFilePathsForComparison(fileName, commitId);
+
+        // Assuming there is an API endpoint for file comparison
+        const comparisonApiUrl = `${process.env.COMPARISON_API_URL}/compare_images`;
+
+        // Sending a POST request to the comparison API
+        const comparisonResult = await axios.post(comparisonApiUrl, {
+            old_dwg:currentVersion,
+            mod_dwg:commitIdVersion,
+        });
+
+        res.json({ message: 'Comparison completed.', result: comparisonResult.data });
+    } catch (error) {
+        console.error('Error comparing versions:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+async function getFilePathsForComparison(fileName, commitId) {
+    try {
+        // Find the current version of the file
+        const currentVersionFile = await FileModel.findOne({ filename: fileName }, {}, { sort: { timestamp: -1 } });
+
+        if (!currentVersionFile) {
+            throw new Error('File not found.');
+        }
+
+        // Find the file version based on commitId
+        const commitIdVersionFile = await FileModel.findOne({ filename: fileName, commitId });
+
+        if (!commitIdVersionFile) {
+            throw new Error('File version for commitId not found.');
+        }
+
+        // Construct the file paths
+        // const currentVersion = path.join(process.env.IP, 'download', encodeURIComponent(currentVersionFile.path));
+        // const commitIdVersion = path.join(process.env.IP, 'download', encodeURIComponent(commitIdVersionFile.path));
+        const currentVersion = currentVersionFile.path;
+        const commitIdVersion = commitIdVersionFile.version;
+
+        return { currentVersion, commitIdVersion };
+    } catch (error) {
+        throw error;
+    }
+}
 
 
 module.exports = router;
