@@ -10,6 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6
+  socket_io_client: ^2.0.3
+  uuid: ^4.1.0
 
   logger: ^2.0.2+1
   dio: ^5.4.0
