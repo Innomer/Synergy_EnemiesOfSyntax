@@ -15,7 +15,7 @@ const { createServer } = require('http');
 
 
 mongoose.set("strictQuery", true);
-mongoose.connect('mongodb://0.0.0.0:27017/synergy', { useUnifiedTopology: true, useNewUrlParser: true, });
+mongoose.connect('mongodb+srv://innomershyper:FcMjNNbDbg4UgGKk@synergy.vmorcse.mongodb.net/?retryWrites=true&w=majority', { useUnifiedTopology: true, useNewUrlParser: true, });
 mongoose.connection.on('error', err => console.log(err));
 mongoose.connection.on('connected', con => console.log("connected to DB"));
 mongoose.connection.on('disconnected', con => console.log("disconnected from DB"));
@@ -30,11 +30,11 @@ io.on('connection', (socket) => {
     socket.join('anomyous_group');
     console.log('backend connected');
     socket.on('sendMsg', (msg) => {
-      console.log('msg', msg /* { ...msg, type: 'otherMsg' } */);
-      /* socket.emit('sendMsgServer', { ...msg, type: 'otherMsg' }); */
-      io.to('anomyous_group').emit('sendMsgServer', { ...msg, type: 'otherMsg' });
+        console.log('msg', msg /* { ...msg, type: 'otherMsg' } */);
+        /* socket.emit('sendMsgServer', { ...msg, type: 'otherMsg' }); */
+        io.to('anomyous_group').emit('sendMsgServer', { ...msg, type: 'otherMsg' });
     });
-  });
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -51,7 +51,7 @@ app.use('/static', express.static(path.join(__dirname, 'static')));
 
 app.get('/download/:filename', (req, res) => {
     const filename = decodeURIComponent(req.params.filename);
-    const filePath = path.join(__dirname,filename);
+    const filePath = path.join(__dirname, filename);
 
     res.download(filePath, path.basename(filePath));
 });
@@ -62,6 +62,6 @@ app.use(function (err, req, res, next) {
     res.json({ error: err });
 });
 
-app.listen(8080, () => {
-    console.log('Server started at 8080');
+app.listen(8081, () => {
+    console.log('Server started at 8081');
 });
