@@ -1,5 +1,5 @@
 # Use an official Node runtime as a parent image
-FROM node:20
+FROM node:18
 
 # Set the working directory in the container
 WORKDIR /backend
@@ -16,11 +16,8 @@ COPY . .
 # Make port available to the world outside this container
 EXPOSE 8080
 
-# Define environment variable
-ENV NODE_ENV=production   
-
 # Build the app 
 # RUN npm run build
 
 # Run the app when the container launches
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]

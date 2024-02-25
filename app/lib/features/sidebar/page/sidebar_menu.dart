@@ -176,44 +176,93 @@ class SidebarMenu extends StatelessWidget {
   }
 }
 
+// final menuTree = TreeNode.root()
+//   ..addAll(
+//     [
+//       TreeNode(key: "Dashboard", data: Icons.dashboard),
+//       TreeNode(key: "Documentation", data: Icons.description)
+//         ..addAll([
+//           TreeNode(key: "Dart"),
+//           TreeNode(key: "Flutter"),
+//         ]),
+//       TreeNode(key: "Plugins", data: Icons.cable)
+//         ..addAll([
+//           TreeNode(key: "Animated Tree View"),
+//           TreeNode(key: "Flutter BLoC"),
+//           TreeNode(key: "Material"),
+//         ]),
+//       TreeNode(key: "Analytics", data: Icons.analytics),
+//       TreeNode(key: "Collection", data: Icons.collections_bookmark)
+//         ..addAll([
+//           TreeNode(key: "Framework")
+//             ..addAll([
+//               TreeNode(key: "React"),
+//               TreeNode(key: "Angular"),
+//             ]),
+//           TreeNode(key: "Technology")
+//             ..addAll([
+//               TreeNode(key: "Mobile")
+//                 ..addAll([
+//                   TreeNode(key: "Android"),
+//                   TreeNode(key: "iOS"),
+//                 ]),
+//               TreeNode(key: "Web")
+//                 ..addAll([
+//                   TreeNode(key: "HTML/CSS"),
+//                   TreeNode(key: "JavaScript"),
+//                 ]),
+//             ]),
+//         ]),
+//       TreeNode(key: "Settings", data: Icons.settings),
+//     ],
+//   );
 final menuTree = TreeNode.root()
   ..addAll(
     [
-      TreeNode(key: "Dashboard", data: Icons.dashboard),
-      TreeNode(key: "Documentation", data: Icons.description)
+      TreeNode(key: "Project Dashboard", data: Icons.dashboard),
+      TreeNode(key: "Project Documentation", data: Icons.description)
         ..addAll([
-          TreeNode(key: "Dart"),
-          TreeNode(key: "Flutter"),
+          TreeNode(key: "Reports"),
+          TreeNode(key: "Specifications"),
+          TreeNode(key: "Approvals"),
+          TreeNode(key: "Schedules"),
+          TreeNode(key: "Scope of Works"),
+          TreeNode(key: "Subcontract / Contract Documents"),
         ]),
-      TreeNode(key: "Plugins", data: Icons.cable)
+      TreeNode(key: "Drawings", data: Icons.cable)
         ..addAll([
-          TreeNode(key: "Animated Tree View"),
-          TreeNode(key: "Flutter BLoC"),
-          TreeNode(key: "Material"),
+          TreeNode(key: "Architectural Drawings"),
+          TreeNode(key: "Structural Drawings"),
+          TreeNode(key: "Hydraulic Drawings"),
+          TreeNode(key: "Electrical Drawings"),
+          TreeNode(key: "Civil Drawings"),
         ]),
-      TreeNode(key: "Analytics", data: Icons.analytics),
-      TreeNode(key: "Collection", data: Icons.collections_bookmark)
+      TreeNode(key: "File Access & Management", data: Icons.analytics),
+      TreeNode(key: "Project Collections", data: Icons.collections_bookmark)
         ..addAll([
-          TreeNode(key: "Framework")
+          TreeNode(key: "Version Control")
             ..addAll([
-              TreeNode(key: "React"),
-              TreeNode(key: "Angular"),
+              TreeNode(key: "Overlay Comparison"),
+              TreeNode(key: "Side-by-Side Comparison"),
             ]),
-          TreeNode(key: "Technology")
+          TreeNode(key: "File Segmentation")
             ..addAll([
-              TreeNode(key: "Mobile")
+              TreeNode(key: "PDF"),
+              TreeNode(key: "DOC"),
+              TreeNode(key: "Images")
                 ..addAll([
-                  TreeNode(key: "Android"),
-                  TreeNode(key: "iOS"),
-                ]),
-              TreeNode(key: "Web")
-                ..addAll([
-                  TreeNode(key: "HTML/CSS"),
-                  TreeNode(key: "JavaScript"),
+                  TreeNode(key: "3D Renders"),
+                  TreeNode(key: "Site Photos"),
+                  TreeNode(key: "Inspection Photos"),
                 ]),
             ]),
         ]),
-      TreeNode(key: "Settings", data: Icons.settings),
+      TreeNode(key: "Collaboration Tools", data: Icons.settings)
+        ..addAll([
+          TreeNode(key: "Annotation"),
+          TreeNode(key: "Real-Time Interaction"),
+          TreeNode(key: "Version Comparison"),
+        ]),
     ],
   );
 
