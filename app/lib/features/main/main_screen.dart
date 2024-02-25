@@ -93,8 +93,8 @@ class _MainScreenState extends State<MainScreen> {
             // ),
             BottomNavItem(
               selectedIndex: selectedIndex,
-              icon: 'assets/svgs/dashboard.svg',
-              label: "Profile",
+              icon: 'assets/svgs/chat.svg',
+              label: "Chat",
               index: 4,
               onTap: () {
                 setState(() {
