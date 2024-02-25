@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:pdftron_flutter/pdftron_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 import 'package:synergy/features/onboarding/splash_screen.dart';
-import 'package:synergy/features/projects/view_project/features/dashboard/views/screens/onboarding_example.dart';
 import 'package:synergy/utils/utils.dart';
 
 import 'firebase_options.dart';
@@ -46,12 +46,14 @@ class MainApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthStore()),
         ChangeNotifierProvider(create: (_) => ProjectStore()),
       ],
-      child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: lightTheme(),
-        darkTheme: darkTheme(),
-        themeMode: ThemeMode.system,
-        home: const SplashScreen(),
+      child: Sizer(
+        builder: (context, orientation, deviceType) => GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: lightTheme(),
+          darkTheme: darkTheme(),
+          themeMode: ThemeMode.system,
+          home: const SplashScreen(),
+        ),
       ),
     );
   }

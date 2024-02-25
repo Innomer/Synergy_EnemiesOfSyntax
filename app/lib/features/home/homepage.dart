@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter Demo',
-      home: const MainPage(),
+      home: MainPage(),
     );
   }
 }
@@ -62,7 +62,7 @@ class _MainPageState extends State<MainPage> {
                 left: 16,
                 bottom: 16,
               ),
-              decoration: BoxDecoration(color: Colors.blue),
+              decoration: const BoxDecoration(color: Colors.blue),
               child: Column(
                 children: [
                   Row(
@@ -77,7 +77,7 @@ class _MainPageState extends State<MainPage> {
                         ),
                       ),
                       const SizedBox(width: 12),
-                      Text(
+                      const Text(
                         "Hi Dishant!",
                         style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
                       ),
@@ -85,17 +85,17 @@ class _MainPageState extends State<MainPage> {
                   ),
                   Row(
                     children: [
-                      Expanded(
+                      const Expanded(
                         flex: 4,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(height: 16),
+                            SizedBox(height: 16),
                             Text(
                               "Docstruct",
                               style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.w800),
                             ),
-                            const SizedBox(width: 12),
+                            SizedBox(width: 12),
                             Text(
                               "Revolutionize document management for construction teams, integrating advanced solutions for seamless file navigation and collaboration.",
                               style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
@@ -115,17 +115,18 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
             GridView.count(
-              crossAxisCount: 2,
+              crossAxisCount: MediaQuery.of(context).size.width >= 600 ? 4 : 2,
               shrinkWrap: true,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
+              physics: NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.all(20),
               children: [
                 for (int i = 0; i < folders.length; i++)
                   InkWell(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => DetailPage(),
+                        builder: (context) => const DetailPage(),
                       ));
                     },
                     child: Stack(
@@ -141,13 +142,13 @@ class _MainPageState extends State<MainPage> {
                                 alignment: Alignment.centerRight,
                                 child: Text(
                                   "${folders[i].storage}",
-                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                                 ),
                               ),
                               const SizedBox(height: 32),
                               Text(
                                 "${folders[i].folderName}",
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                               ),
                               const Divider(
                                 color: Colors.white,
@@ -156,7 +157,7 @@ class _MainPageState extends State<MainPage> {
                               Text(
                                 "Last edit: ${folders[i].lastEdit}",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.black45, fontSize: 12, fontWeight: FontWeight.w400),
+                                style: const TextStyle(color: Colors.black45, fontSize: 12, fontWeight: FontWeight.w400),
                               ),
                             ],
                           ),

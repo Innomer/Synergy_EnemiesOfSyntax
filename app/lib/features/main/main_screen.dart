@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:synergy/features/main/widgets/bottom_nav_item.dart';
 import 'package:synergy/features/projects/projects_screen.dart';
 import 'package:synergy/features/recents/recents_screen.dart';
 
+import '../chat/pages/home/groupchat.dart';
 import '../home/home_screen.dart';
-import 'widgets/bottom_nav_item.dart';
+
+enum _SelectedTab { home, favorite, add, search, person }
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -23,6 +26,14 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
   }
 
+  var _selectedTab = _SelectedTab.home;
+
+  void _handleIndexChanged(int i) {
+    setState(() {
+      _selectedTab = _SelectedTab.values[i];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,9 +41,10 @@ class _MainScreenState extends State<MainScreen> {
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          HomeScreen(),
-          ProjectsScreen(),
+          const HomeScreen(),
+          const ProjectsScreen(),
           RecentsScreen(),
+          const ChatScreen(),
         ],
       ),
       bottomNavigationBar: Container(
@@ -94,11 +106,11 @@ class _MainScreenState extends State<MainScreen> {
             BottomNavItem(
               selectedIndex: selectedIndex,
               icon: 'assets/svgs/chat.svg',
-              label: "Chat",
-              index: 4,
+              label: "Team Chat",
+              index: 3,
               onTap: () {
                 setState(() {
-                  selectedIndex = 4;
+                  selectedIndex = 3;
                   pageController.animateToPage(selectedIndex, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                 });
                 HapticFeedback.lightImpact();

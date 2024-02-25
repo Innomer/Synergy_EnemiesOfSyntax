@@ -94,7 +94,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             children: [
               Image(
                 image: const AssetImage('assets/images/logo.webp'),
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery.of(context).size.width * 0.6,
               ),
             ],
           ),

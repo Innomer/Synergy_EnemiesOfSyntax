@@ -41,6 +41,8 @@ dependencies:
   permission_handler: ^11.3.0
   file_manager: ^1.0.2
   file_picker: ^6.1.1
+  crystal_navigation_bar: ^1.0.0
+  flutter_iconly: ^1.0.2
 
 flutter_launcher_icons:
   android: "launcher_icon"
@@ -67,3 +69,4 @@ flutter:
     - assets/images/vector/
     - assets/lotties/
     - assets/svgs/
+    - assets/3d/

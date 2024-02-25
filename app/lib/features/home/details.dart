@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:synergy/utils/utils.dart';
 
 import 'models/fileupload.dart';
 import 'models/folder.dart';
@@ -42,11 +43,11 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff5f6fd),
+      // backgroundColor: const Color(0xfff5f6fd),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        backgroundColor: Color(0xff2685f9),
-        child: Icon(Icons.add),
+        backgroundColor: const Color(0xff2685f9),
+        child: const Icon(Icons.add),
       ),
       body: Stack(
         children: [
@@ -58,19 +59,27 @@ class _DetailPageState extends State<DetailPage> {
                   width: MediaQuery.of(context).size.width,
                   padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                   decoration: const BoxDecoration(color: Color(0xff2685f9)),
-                  child: SafeArea(
+                  child: const SafeArea(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 40),
+                        SizedBox(height: 40),
                         Text(
                           "Drawings",
-                          style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.w600),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 28,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                        const SizedBox(height: 10),
+                        SizedBox(height: 10),
                         Text(
                           "Segregate into separate folders for each type of drawing, which can be in PDF or DWG format: Architectural, Structural, Hydraulic, Electrical, Civil, etc.",
-                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ],
                     ),
@@ -78,9 +87,12 @@ class _DetailPageState extends State<DetailPage> {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.all(16),
-                  margin: EdgeInsets.all(20),
-                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
+                  padding: const EdgeInsets.all(16),
+                  margin: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Palette.black,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   child: Column(
                     children: [
                       for (int i = 0; i < fileUploads.length; i++)
@@ -91,21 +103,21 @@ class _DetailPageState extends State<DetailPage> {
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(6),
                                 child: SizedBox.fromSize(
-                                  size: Size.fromRadius(18),
+                                  size: const Size.fromRadius(18),
                                   child: Image.network('${fileUploads[i].url}'),
                                 ),
                               ),
                               const SizedBox(width: 4),
                               Text(
                                 '${fileUploads[i].fileName}',
-                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                               ),
                               const Spacer(),
                               Column(
                                 children: [
                                   Text(
                                     "${fileUploads[i].progressSize} of ${fileUploads[i].progressMax}",
-                                    style: TextStyle(color: Colors.black38, fontSize: 16, fontWeight: FontWeight.w400),
+                                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                                   ),
                                   const SizedBox(height: 4),
                                   SizedBox(
@@ -125,8 +137,8 @@ class _DetailPageState extends State<DetailPage> {
                                   //onpress
                                 },
                                 child: Container(
-                                  padding: EdgeInsets.all(4),
-                                  decoration: BoxDecoration(color: Colors.black12, shape: BoxShape.circle),
+                                  padding: const EdgeInsets.all(4),
+                                  decoration: const BoxDecoration(color: Colors.black12, shape: BoxShape.circle),
                                   child: const Icon(
                                     Icons.close,
                                     size: 16,
@@ -147,50 +159,61 @@ class _DetailPageState extends State<DetailPage> {
                 //         fontSize: 20, fontWeight: FontWeight.w700),
                 //   ),
                 // ),
-                GridView.count(crossAxisCount: 2, shrinkWrap: true, crossAxisSpacing: 10, mainAxisSpacing: 10, padding: const EdgeInsets.all(15), children: [
-                  for (int i = 0; i < folderStorage.length; i++)
-                    Container(
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(14)),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(22),
-                                decoration: BoxDecoration(color: HexColor("${folderStorage[i].colors}").withOpacity(0.1), borderRadius: BorderRadius.circular(14)),
-                                child: Icon(
-                                  Icons.folder,
-                                  color: HexColor("${folderStorage[i].colors}"),
-                                  size: 32,
+                GridView.count(
+                  crossAxisCount: MediaQuery.of(context).size.width >= 600 ? 4 : 2,
+                  shrinkWrap: true,
+                  crossAxisSpacing: 10,
+                  physics: NeverScrollableScrollPhysics(),
+                  mainAxisSpacing: 10,
+                  padding: const EdgeInsets.all(15),
+                  children: [
+                    for (int i = 0; i < folderStorage.length; i++)
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Palette.black,
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Icon(
+                                  Icons.star,
+                                  color: Colors.yellow,
                                 ),
-                              ),
-                              const Icon(
-                                Icons.more_vert,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            "${folderStorage[i].folderName}",
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                          ),
-                          Text(
-                            "${folderStorage[i].storage}",
-                            style: TextStyle(color: Colors.black38, fontSize: 16, fontWeight: FontWeight.w700),
-                          ),
-                        ],
-                      ),
-                    )
-                ]),
+                                Container(
+                                  padding: const EdgeInsets.all(22),
+                                  decoration: BoxDecoration(color: HexColor("${folderStorage[i].colors}").withOpacity(0.1), borderRadius: BorderRadius.circular(14)),
+                                  child: Icon(
+                                    Icons.folder,
+                                    color: HexColor("${folderStorage[i].colors}"),
+                                    size: 32,
+                                  ),
+                                ),
+                                const Icon(
+                                  Icons.more_vert,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              "${folderStorage[i].folderName}",
+                              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                            ),
+                            Text(
+                              "${folderStorage[i].storage}",
+                              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
+                      )
+                  ],
+                ),
               ],
             ),
           ),
@@ -205,22 +228,28 @@ class _DetailPageState extends State<DetailPage> {
                     },
                     child: Container(
                       padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(color: Colors.white.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       child: const Icon(
                         Icons.arrow_back,
                         color: Colors.white,
                       ),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   InkWell(
                     onTap: () {
                       Navigator.of(context).pop();
                     },
                     child: Container(
                       padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(color: Colors.white.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
-                      child: Text(
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: const Text(
                         "Select",
                         style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500),
                       ),
@@ -231,7 +260,7 @@ class _DetailPageState extends State<DetailPage> {
                       Navigator.of(context).pop();
                     },
                     child: Container(
-                      margin: EdgeInsets.only(left: 14),
+                      margin: const EdgeInsets.only(left: 14),
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(color: Colors.white.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
                       child: const Icon(
@@ -245,7 +274,7 @@ class _DetailPageState extends State<DetailPage> {
                       Navigator.of(context).pop();
                     },
                     child: Container(
-                      margin: EdgeInsets.only(left: 14),
+                      margin: const EdgeInsets.only(left: 14),
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(color: Colors.white.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
                       child: const Icon(
