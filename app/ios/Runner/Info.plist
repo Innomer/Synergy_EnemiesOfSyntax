@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Synergy</string>
+	<string>DocStruct</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -62,6 +62,18 @@
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Explain why your app uses photo library</string>
+
+	<!-- Image Picker -->
+	<key>NSCameraUsageDescription</key>
+	<string>Explain why your app uses camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Explain why your app uses microphone</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Explain why your app needs access to photos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Explain why your app needs access to photos</string>
+
+	
 
 </dict>
 </plist>

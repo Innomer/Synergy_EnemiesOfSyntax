@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:socket_flutter_chat/src/foundation/msg_widget/other_msg_widget.dart';
-import 'package:socket_flutter_chat/src/foundation/msg_widget/own_msg_widget.dart';
-import 'package:socket_flutter_chat/src/pages/group/msg_model.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
+
+import '../../foundation/msg_widget/other_msg_widget.dart';
+import '../../foundation/msg_widget/own_msg_widget.dart';
+import 'msg_model.dart';
 
 class GroupPage extends StatefulWidget {
   final String name;

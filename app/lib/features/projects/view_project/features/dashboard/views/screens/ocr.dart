@@ -1,7 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 
 class Pres extends StatefulWidget {
   const Pres({Key? key}) : super(key: key);
@@ -23,9 +24,7 @@ class _PresState extends State<Pres> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Scan your bills"),
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
+        title: const Text("Scan your Documents"),
         foregroundColor: Colors.black,
       ),
       body: Center(
@@ -37,11 +36,11 @@ class _PresState extends State<Pres> {
               children: [
                 if (textScanning) const CircularProgressIndicator(),
                 if (!textScanning && imageFile == null)
-                  Container(
-                    width: 300,
-                    height: 300,
-                    color: Colors.grey[300]!,
-                  ),
+                  // Container(
+                  //   width: 300,
+                  //   height: 300,
+                  //   color: Colors.grey[300]!,
+                  // ),
                 if (imageFile != null) Image.file(File(imageFile!.path)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -51,18 +50,17 @@ class _PresState extends State<Pres> {
                         padding: const EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.grey, backgroundColor: Colors.white,
+                            foregroundColor: Colors.grey,
+                            backgroundColor: Colors.white,
                             shadowColor: Colors.grey[400],
                             elevation: 10,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0)),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
                           ),
                           onPressed: () {
                             getImage(ImageSource.gallery);
                           },
                           child: Container(
-                            margin: const EdgeInsets.symmetric(
-                                vertical: 5, horizontal: 5),
+                            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -72,8 +70,7 @@ class _PresState extends State<Pres> {
                                 ),
                                 Text(
                                   "Gallery",
-                                  style: TextStyle(
-                                      fontSize: 13, color: Colors.grey[600]),
+                                  style: TextStyle(fontSize: 13, color: Colors.grey[600]),
                                 )
                               ],
                             ),
@@ -84,18 +81,17 @@ class _PresState extends State<Pres> {
                         padding: const EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.grey, backgroundColor: Colors.white,
+                            foregroundColor: Colors.grey,
+                            backgroundColor: Colors.white,
                             shadowColor: Colors.grey[400],
                             elevation: 10,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0)),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
                           ),
                           onPressed: () {
                             getImage(ImageSource.camera);
                           },
                           child: Container(
-                            margin: const EdgeInsets.symmetric(
-                                vertical: 5, horizontal: 5),
+                            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -105,8 +101,7 @@ class _PresState extends State<Pres> {
                                 ),
                                 Text(
                                   "Camera",
-                                  style: TextStyle(
-                                      fontSize: 13, color: Colors.grey[600]),
+                                  style: TextStyle(fontSize: 13, color: Colors.grey[600]),
                                 )
                               ],
                             ),

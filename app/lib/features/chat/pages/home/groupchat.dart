@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:socket_flutter_chat/src/pages/group/group_page.dart';
+import 'package:synergy/utils/utils.dart';
 import 'package:uuid/uuid.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+import '../group/group_page.dart';
+
+class ChatScreen extends StatelessWidget {
+  const ChatScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,10 @@ class HomePage extends StatelessWidget {
           onPressed: () => showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: const Text('Please enter your name'),
+              title: const Text(
+                'Please enter your name',
+                style: TextStyle(color: Colors.white),
+              ),
               content: Form(
                 key: formKey,
                 child: TextFormField(
@@ -72,7 +77,7 @@ class HomePage extends StatelessWidget {
           ),
           child: const Text(
             'Initiate Docstruct Group Chat',
-            style: TextStyle(color: Colors.black, fontSize: 16),
+            style: TextStyle(color: Palette.light, fontSize: 16),
           ),
         ),
       ),
