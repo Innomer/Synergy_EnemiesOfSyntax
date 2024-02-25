@@ -54,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
                 }),
             BottomNavItem(
               selectedIndex: selectedIndex,
-              icon: 'assets/svgs/network.svg',
+              icon: 'assets/svgs/project.svg',
               label: "Projects",
               index: 1,
               onTap: () {
@@ -67,7 +67,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
             BottomNavItem(
               selectedIndex: selectedIndex,
-              icon: 'assets/svgs/bytes.svg',
+              icon: 'assets/svgs/recent.svg',
               label: "Recents",
               index: 2,
               onTap: () {
@@ -78,23 +78,23 @@ class _MainScreenState extends State<MainScreen> {
                 HapticFeedback.lightImpact();
               },
             ),
+            // BottomNavItem(
+            //   selectedIndex: selectedIndex,
+            //   icon: 'assets/svgs/stars.svg',
+            //   label: "Learnings",
+            //   index: 3,
+            //   onTap: () {
+            //     setState(() {
+            //       selectedIndex = 3;
+            //       pageController.animateToPage(selectedIndex, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+            //     });
+            //     HapticFeedback.lightImpact();
+            //   },
+            // ),
             BottomNavItem(
               selectedIndex: selectedIndex,
-              icon: 'assets/svgs/stars.svg',
-              label: "Learnings",
-              index: 3,
-              onTap: () {
-                setState(() {
-                  selectedIndex = 3;
-                  pageController.animateToPage(selectedIndex, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
-                });
-                HapticFeedback.lightImpact();
-              },
-            ),
-            BottomNavItem(
-              selectedIndex: selectedIndex,
-              icon: 'assets/svgs/dashboard.svg',
-              label: "Profile",
+              icon: 'assets/svgs/chat.svg',
+              label: "Chat",
               index: 4,
               onTap: () {
                 setState(() {
