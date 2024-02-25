@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:synergy/features/projects/view_project/features/dashboard/views/screens/ocr.dart';
 
 import '../sidebar/page/sidebar_menu.dart';
 import 'homepage.dart';
@@ -45,7 +46,14 @@ class _HomeScreenState extends State<HomeScreen> {
           body: MainPage(),
           drawer: TreeViewDrawer(),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Pres(),
+                ),
+              );
+            },
             child: const Icon(Icons.add),
           ),
         ),

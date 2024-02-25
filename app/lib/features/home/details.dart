@@ -44,11 +44,11 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: const Color(0xfff5f6fd),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: const Color(0xff2685f9),
-        child: const Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   backgroundColor: const Color(0xff2685f9),
+      //   child: const Icon(Icons.add),
+      // ),
       body: Stack(
         children: [
           SingleChildScrollView(

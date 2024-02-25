@@ -19,6 +19,32 @@ class _RecentsScreenState extends State<RecentsScreen> {
   var fullScreen = false;
   var isSearching = false;
 
+  final List<String> fileNames = [
+    'blueprints_2022-01-01',
+    'construction_site_2022-01-02',
+    'structural_analysis_2022-01-03',
+    'building_permit_2022-01-04',
+    'site_plan_2022-01-05',
+    'electrical_design_2022-01-06',
+    'plumbing_layout_2022-01-07',
+    'HVAC_system_2022-01-08',
+    'material_specifications_2022-01-09',
+    'cost_estimate_2022-01-10',
+  ];
+
+  final List<String> fileSizes = [
+    '1.2 MB',
+    '1.5 MB',
+    '0.8 MB',
+    '2.3 MB',
+    '1.7 MB',
+    '1.1 MB',
+    '0.9 MB',
+    '1.4 MB',
+    '1.6 MB',
+    '2.0 MB',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,19 +98,19 @@ class _RecentsScreenState extends State<RecentsScreen> {
                   ),
                   FileTypeWidget(
                     type: 'Videos',
-                    size: '1.2 MB',
+                    size: '8.2 MB',
                     iconPath: 'assets/3d/video-camera-iso-color.png',
                     color: yellow,
                   ),
                   FileTypeWidget(
                     type: 'Images',
-                    size: '1.2 MB',
+                    size: '2.2 MB',
                     iconPath: 'assets/3d/Image_perspective_matte.png',
                     color: black,
                   ),
                   FileTypeWidget(
                     type: 'Audio',
-                    size: '1.2 MB',
+                    size: '15.6 MB',
                     iconPath: 'assets/3d/Music_perspective_matte.png',
                     color: orange,
                   ),
@@ -98,7 +124,7 @@ class _RecentsScreenState extends State<RecentsScreen> {
                 children: [
                   Text("Recent Files",
                       style: TextStyle(
-                        fontSize: 14.sp,
+                        fontSize: 10.sp,
                         fontWeight: FontWeight.w600,
                       )),
                   InkWell(
@@ -110,7 +136,7 @@ class _RecentsScreenState extends State<RecentsScreen> {
                       "See All",
                       style: TextStyle(
                         color: Colors.grey,
-                        fontSize: 10.sp,
+                        fontSize: 8.sp,
                       ),
                     ),
                   )
@@ -213,18 +239,18 @@ class _RecentsScreenState extends State<RecentsScreen> {
                               ),
                             ),
                       title: Text(
-                        'File Name',
+                        fileNames[index],
                         style: TextStyle(
                           fontStyle: FontStyle.italic,
-                          fontSize: 14.sp,
+                          fontSize: 10.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       subtitle: Text(
-                        'File Size',
+                        fileSizes[index],
                         style: TextStyle(
                           color: Colors.grey,
-                          fontSize: 12.sp,
+                          fontSize: 8.sp,
                         ),
                       ),
                       onTap: () async {},
@@ -264,7 +290,7 @@ class FileTypeWidget extends StatelessWidget {
           children: [
             Container(
               height: 20.h,
-              width: 40.w,
+              width: 38.w,
               decoration: BoxDecoration(
                 color: color == orange ? orange.withOpacity(0.8) : color,
                 borderRadius: BorderRadius.circular(26),
@@ -277,7 +303,7 @@ class FileTypeWidget extends StatelessWidget {
                     Text(type,
                         style: TextStyle(
                           color: color == yellow ? Colors.black : Colors.white,
-                          fontSize: 14.sp,
+                          fontSize: 10.sp,
                           fontWeight: FontWeight.w600,
                         )),
                     Text(size,
