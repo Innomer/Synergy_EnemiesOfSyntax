@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../sidebar/page/sidebar_menu.dart';
+import 'homepage.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -41,9 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          body: const Center(
-            child: Text('Home Screen'),
-          ),
+          body: MainPage(),
           drawer: TreeViewDrawer(),
           floatingActionButton: FloatingActionButton(
             onPressed: () {},

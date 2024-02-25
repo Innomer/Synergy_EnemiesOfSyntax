@@ -5,6 +5,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:synergy/features/projects/view_project/features/dashboard/views/screens/onboarding_example.dart';
+import 'package:synergy/logic/stores/project_store.dart';
 
 import '../../logic/stores/auth_store.dart';
 import '../auth/login_screen.dart';
@@ -39,14 +41,16 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
   Future<void> initApis() async {
     log("SplashScreen | initApis");
-    if (!context.read<AuthStore>().isAuthenticated) {
-      if (await context.read<AuthStore>().testToken()) {
-        // await context.read<ServerStore>().fetchMyServers();
-        // for (final server in context.read<ServerStore>().servers) {
-        //   await context.read<ContainerStore>().fetchServerContainers(server.id);
-        // }
-      }
-    }
+    context.read<ProjectStore>().getProjects();
+    context.read<ProjectStore>().getAllProjectData();
+    // if (!context.read<AuthStore>().isAuthenticated) {
+    //   if (await context.read<AuthStore>().testToken()) {
+    //     // await context.read<ServerStore>().fetchMyServers();
+    //     // for (final server in context.read<ServerStore>().servers) {
+    //     //   await context.read<ContainerStore>().fetchServerContainers(server.id);
+    //     // }
+    //   }
+    // }
   }
 
   void handleNavigation() async {
@@ -66,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       if (context.mounted) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => LoginScreen()),
+          MaterialPageRoute(builder: (context) => MainScreen()),
         );
       }
     }
@@ -89,7 +93,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image(
-                image: const AssetImage('assets/images/logo.jpg'),
+                image: const AssetImage('assets/images/logo.webp'),
                 width: MediaQuery.of(context).size.width,
               ),
             ],

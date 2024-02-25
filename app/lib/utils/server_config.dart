@@ -14,8 +14,8 @@ final Map<String, ServerDetail> serverDetails = {
     apiPath: '/api/v1',
   ),
   'dev': ServerDetail(
-    baseUrl: 'https://dev.engaze.in',
-    apiPath: '/api/v1',
+    baseUrl: 'http://122.170.14.3:8081',
+    apiPath: '',
   ),
   'local': ServerDetail(
     baseUrl: 'http://127.0.0.1:3000',

@@ -101,7 +101,7 @@ def compare_images():
         server_ip = "192.168.251.157"
 
         # Create a downloadable link with the server's IP address
-        download_link = f'http://{server_ip}:5000/download/{output_pdf_path}'
+        download_link = f'http://{server_ip}:5555/download/{output_pdf_path}'
         
         return jsonify({'download_link': download_link})
     except Exception as e:
@@ -113,4 +113,4 @@ def download_file(filename):
     return send_file(filename, as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(host="192.168.251.157")
+    app.run(host="192.168.251.157", port="5555")
