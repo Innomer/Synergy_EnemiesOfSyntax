@@ -61,8 +61,8 @@ class _MainPageState extends State<MainPage> {
                       ),
                       const SizedBox(width: 12),
                       const Text(
-                        "Hi Dishant!",
-                        style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
+                        "Hi Dishant Zaveri!",
+                        style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w600),
                       ),
                     ],
                   ),
@@ -76,11 +76,11 @@ class _MainPageState extends State<MainPage> {
                             SizedBox(height: 16),
                             Text(
                               "Docstruct",
-                              style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.w800),
+                              style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w800),
                             ),
                             SizedBox(width: 12),
                             Text(
-                              "Revolutionize document management for construction teams, integrating advanced solutions for seamless file navigation and collaboration.",
+                              "Document management for construction teams, integrating advanced solutions for seamless file navigation and collaboration.",
                               style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
                             ),
                           ],
@@ -90,6 +90,7 @@ class _MainPageState extends State<MainPage> {
                         flex: 1,
                         child: Image.asset(
                           'assets/images/folderr.png',
+                          height: 150,
                         ),
                       ),
                     ],
@@ -102,7 +103,7 @@ class _MainPageState extends State<MainPage> {
               shrinkWrap: true,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.all(20),
               children: [
                 for (int i = 0; i < folders.length; i++)

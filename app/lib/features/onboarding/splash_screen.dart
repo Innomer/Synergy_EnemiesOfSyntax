@@ -9,7 +9,6 @@ import 'package:synergy/features/projects/view_project/features/dashboard/views/
 import 'package:synergy/logic/stores/project_store.dart';
 
 import '../../logic/stores/auth_store.dart';
-import '../auth/login_screen.dart';
 import '../main/main_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -70,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       if (context.mounted) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => MainScreen()),
+          MaterialPageRoute(builder: (context) => OnboardingExample()),
         );
       }
     }
@@ -93,7 +92,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image(
-                image: const AssetImage('assets/images/logo.webp'),
+                image: const AssetImage('assets/images/Docstruct.jpg'),
                 width: MediaQuery.of(context).size.width * 0.6,
               ),
             ],
