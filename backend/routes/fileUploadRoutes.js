@@ -206,7 +206,7 @@ router.post('/compare-versions', async (req, res, next) => {
             mod_dwg:commitIdVersion,
         });
 
-        res.json({ message: 'Comparison completed.', result: comparisonResult.data });
+        res.json({ message: 'Comparison completed.', result: comparisonResult.data , prevVersion: `${process.env.IP}/download/${encodeURIComponent(commitIdVersion)}` });
     } catch (error) {
         console.error('Error comparing versions:', error);
         res.status(500).json({ error: 'Internal Server Error' });

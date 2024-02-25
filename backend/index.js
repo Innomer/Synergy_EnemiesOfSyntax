@@ -9,6 +9,9 @@ const loginRoutes = require('./routes/loginRegRoutes');
 const fileUploadRoutes = require('./routes/fileUploadRoutes');
 const chatRoutes = require('./routes/chatRoutes');
 const bodyParser = require('body-parser');
+const { Server } = require('socket.io');
+const { createServer } = require('http');
+
 
 
 mongoose.set("strictQuery", true);
@@ -20,6 +23,18 @@ mongoose.connection.on('disconnected', con => console.log("disconnected from DB"
 // const socket = require('socket.io');
 const app = express();
 app.use(cors());
+const httpServer = createServer(app);
+const io = new Server(httpServer);
+io.on('connection', (socket) => {
+    //Socket group
+    socket.join('anomyous_group');
+    console.log('backend connected');
+    socket.on('sendMsg', (msg) => {
+      console.log('msg', msg /* { ...msg, type: 'otherMsg' } */);
+      /* socket.emit('sendMsgServer', { ...msg, type: 'otherMsg' }); */
+      io.to('anomyous_group').emit('sendMsgServer', { ...msg, type: 'otherMsg' });
+    });
+  });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
