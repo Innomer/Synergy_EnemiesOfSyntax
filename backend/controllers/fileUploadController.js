@@ -42,7 +42,7 @@ const singleFileUpload = async (req, res, next) => {
         if (!latestVersion || latestVersion.hash !== newFileHash) {
             // Save a new version and update the database if there are changes
             const versionedFolder = path.join('versions', project);
-            const versionedFilePath = path.join(versionedFolder, `${fileData.filename}_${curTime}`);
+            const versionedFilePath = path.join(versionedFolder, `${fileData.filename}_${curTime}.pdf`);
 
             // Ensure the destination folder exists before copying
             await fs.mkdir(versionedFolder, { recursive: true });
@@ -108,7 +108,7 @@ const fileRollback = async (req, res, next) => {
         await fs.access(file.version)
         await fs.unlink(file.version)
         
-        const versionPath = path.join('versions', file.project, fileName + "_" + versionId);
+        const versionPath = path.join('versions', file.project, fileName + "_" + versionId+".pdf");
         
         // Ensure the version exists before rolling back
         try {
@@ -166,7 +166,7 @@ const multipleFileUpload = async (req, res, next) => {
             if (!latestVersion || latestVersion.hash !== newFileHash) {
                 // Save a new version and update the database if there are changes
                 const versionedFolder = path.join('versions', project);
-                const versionedFilePath = path.join(versionedFolder, `${fileData.filename}_${curTime}`);
+                const versionedFilePath = path.join(versionedFolder, `${fileData.filename}_${curTime}.pdf`);
 
                 // Ensure the destination folder exists before copying
                 await fs.mkdir(versionedFolder, { recursive: true });

@@ -98,7 +98,7 @@ def compare_images():
         save_images_to_pdf(results, output_pdf_path)
 
         # Get the server's IP address
-        server_ip = "122.170.14.3"
+        server_ip = "192.168.251.157"
 
         # Create a downloadable link with the server's IP address
         download_link = f'http://{server_ip}:5555/download/{output_pdf_path}'
@@ -113,4 +113,4 @@ def download_file(filename):
     return send_file(filename, as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(host="122.170.14.3", port="5555")
+    app.run(host="192.168.251.157", port="5555")
