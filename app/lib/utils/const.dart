@@ -25,5 +25,5 @@ String prettyJSON(Map<String, dynamic> message) {
   return const JsonEncoder.withIndent('  ').convert(message);
 }
 
-final ServerDetail serverDetail = serverDetails['prod']!;
+final ServerDetail serverDetail = serverDetails['dev']!;
 final String apiUrl = serverDetail.baseUrl + serverDetail.apiPath;

@@ -2,8 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:pdftron_flutter/pdftron_flutter.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:synergy/logic/stores/project_store.dart';
 import 'package:synergy/utils/utils.dart';
+
+import 'view_project/features/dashboard/views/screens/dashboard_screen.dart';
 
 class ProjectsScreen extends StatefulWidget {
   const ProjectsScreen({super.key});
@@ -18,6 +22,13 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
   var isMoving = false;
   var fullScreen = false;
   var isSearching = false;
+
+  final TextEditingController addProjectController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +94,43 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
                 runSpacing: 8,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      // Config config = new Config();
+                      // PdftronFlutter.openDocument("https://www.pdftron.com/webviewer/demo/gallery/Report_2011.pdf", config: config);
+                      void _showAddProjectModal(BuildContext context) {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Container(
+                              height: MediaQuery.of(context).size.height * 0.8,
+                              padding: EdgeInsets.all(16),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  TextFormField(
+                                    controller: addProjectController,
+                                    decoration: InputDecoration(
+                                      hintText: 'Enter project name',
+                                    ),
+                                  ),
+                                  SizedBox(height: 16),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      context.read<ProjectStore>().projects.add(addProjectController.text);
+                                      context.read<ProjectStore>().notifyListeners();
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('Add Project'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      }
+
+                      _showAddProjectModal(context);
+                    },
                     child: Container(
                       width: 150,
                       height: 150,
@@ -103,29 +150,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
                       ),
                     ),
                   ),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
-                  ProjectItem(title: 'Project 1'),
+                  for (int i = 0; i < context.watch<ProjectStore>().projects.length; i++) ProjectItem(title: 'Project ${context.watch<ProjectStore>().projects[i]}'),
                 ],
               ),
             ],
@@ -136,104 +161,108 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
   }
 }
 
-class ProjectItem extends StatelessWidget {
-  ProjectItem({
-    super.key,
-    required this.title,
-  });
+  class ProjectItem extends StatelessWidget {
+    ProjectItem({
+      super.key,
+      required this.title,
+    });
 
-  final String title;
+    final String title;
 
-  final List<Color> colors = [
-    Colors.red,
-    Colors.blue,
-    Colors.green,
-    Colors.purple,
-    Colors.orange,
-    Colors.teal,
-    Colors.pink,
-    Colors.indigo,
-    Colors.amber,
-    Colors.cyan,
-  ];
+    final List<Color> colors = [
+      Colors.red,
+      Colors.blue,
+      Colors.green,
+      Colors.purple,
+      Colors.orange,
+      Colors.teal,
+      Colors.pink,
+      Colors.indigo,
+      Colors.amber,
+      Colors.cyan,
+    ];
 
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Config config = new Config();
-        PdftronFlutter.openDocument("https://www.pdftron.com/webviewer/demo/gallery/Report_2011.pdf", config: config);
-      },
-      child: Container(
-        width: 150,
-        height: 150,
-        decoration: BoxDecoration(
-          color: colors[Random().nextInt(colors.length)],
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(title, style: const TextStyle(color: Colors.white)),
-            ],
+    @override
+    Widget build(BuildContext context) {
+      return GestureDetector(
+        onTap: () {
+          // Config config = new Config();
+          // PdftronFlutter.openDocument("https://www.pdftron.com/webviewer/demo/gallery/Report_2011.pdf", config: config);
+
+          //  Nav to DashboardScreen
+          Get.put(DashboardController());
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => DashboardScreen()));
+        },
+        child: Container(
+          width: 150,
+          height: 150,
+          decoration: BoxDecoration(
+            color: colors[Random().nextInt(colors.length)],
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(title, style: const TextStyle(color: Colors.white)),
+              ],
+            ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class CustomSegmentedControl extends StatefulWidget {
-  const CustomSegmentedControl({super.key});
-
-  @override
-  CustomSegmentedControlState createState() => CustomSegmentedControlState();
-}
-
-class CustomSegmentedControlState extends State<CustomSegmentedControl> {
-  int _selectedIndex = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey[800],
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _buildSegment('Date', 0),
-          _buildSegment('Name', 1),
-          _buildSegment('Type', 2),
-        ],
-      ),
-    );
+      );
+    }
   }
 
-  Widget _buildSegment(String text, int index) {
-    final bool isSelected = _selectedIndex == index;
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _selectedIndex = index;
-        });
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+  class CustomSegmentedControl extends StatefulWidget {
+    const CustomSegmentedControl({super.key});
+
+    @override
+    CustomSegmentedControlState createState() => CustomSegmentedControlState();
+  }
+
+  class CustomSegmentedControlState extends State<CustomSegmentedControl> {
+    int _selectedIndex = 0;
+
+    @override
+    Widget build(BuildContext context) {
+      return Container(
         decoration: BoxDecoration(
+          color: Colors.grey[800],
           borderRadius: BorderRadius.circular(8),
-          color: isSelected ? Colors.grey[600] : Colors.transparent,
         ),
-        child: Text(
-          text,
-          style: TextStyle(
-            color: isSelected ? Colors.white : Colors.white54,
-            fontSize: 14,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _buildSegment('Date', 0),
+            _buildSegment('Name', 1),
+            _buildSegment('Type', 2),
+          ],
+        ),
+      );
+    }
+
+    Widget _buildSegment(String text, int index) {
+      final bool isSelected = _selectedIndex == index;
+      return GestureDetector(
+        onTap: () {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: isSelected ? Colors.grey[600] : Colors.transparent,
+          ),
+          child: Text(
+            text,
+            style: TextStyle(
+              color: isSelected ? Colors.white : Colors.white54,
+              fontSize: 14,
+            ),
           ),
         ),
-      ),
-    );
+      );
+    }
   }
-}

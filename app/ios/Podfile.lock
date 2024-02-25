@@ -1,4 +1,38 @@
 PODS:
+  - DKImagePickerController/Core (4.3.4):
+    - DKImagePickerController/ImageDataManager
+    - DKImagePickerController/Resource
+  - DKImagePickerController/ImageDataManager (4.3.4)
+  - DKImagePickerController/PhotoGallery (4.3.4):
+    - DKImagePickerController/Core
+    - DKPhotoGallery
+  - DKImagePickerController/Resource (4.3.4)
+  - DKPhotoGallery (0.0.17):
+    - DKPhotoGallery/Core (= 0.0.17)
+    - DKPhotoGallery/Model (= 0.0.17)
+    - DKPhotoGallery/Preview (= 0.0.17)
+    - DKPhotoGallery/Resource (= 0.0.17)
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Core (0.0.17):
+    - DKPhotoGallery/Model
+    - DKPhotoGallery/Preview
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Model (0.0.17):
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Preview (0.0.17):
+    - DKPhotoGallery/Model
+    - DKPhotoGallery/Resource
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Resource (0.0.17):
+    - SDWebImage
+    - SwiftyGif
+  - file_picker (0.0.1):
+    - DKImagePickerController/PhotoGallery
+    - Flutter
   - Firebase/CoreOnly (10.20.0):
     - FirebaseCore (= 10.20.0)
   - firebase_core (2.25.4):
@@ -263,11 +297,18 @@ PODS:
     - PDFTronTools
   - PDFTronTools (1.0.1-27):
     - PDFTron
+  - permission_handler_apple (9.3.0):
+    - Flutter
   - PromisesObjC (2.4.0)
   - Protobuf (3.25.3)
+  - SDWebImage (5.19.0):
+    - SDWebImage/Core (= 5.19.0)
+  - SDWebImage/Core (5.19.0)
   - SSZipArchive (2.4.3)
+  - SwiftyGif (5.4.4)
 
 DEPENDENCIES:
+  - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
@@ -289,9 +330,12 @@ DEPENDENCIES:
   - PDFTron (from `https://pdftron.com/downloads/ios/flutter/pdftron/latest.podspec`)
   - pdftron_flutter (from `.symlinks/plugins/pdftron_flutter/ios`)
   - PDFTronTools (from `https://pdftron.com/downloads/ios/flutter/pdftron-tools/latest.podspec`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
 
 SPEC REPOS:
   trunk:
+    - DKImagePickerController
+    - DKPhotoGallery
     - Firebase
     - FirebaseCore
     - FirebaseCoreInternal
@@ -331,9 +375,13 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - Protobuf
+    - SDWebImage
     - SSZipArchive
+    - SwiftyGif
 
 EXTERNAL SOURCES:
+  file_picker:
+    :path: ".symlinks/plugins/file_picker/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   Flutter:
@@ -376,8 +424,13 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/pdftron_flutter/ios"
   PDFTronTools:
     :podspec: https://pdftron.com/downloads/ios/flutter/pdftron-tools/latest.podspec
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
 
 SPEC CHECKSUMS:
+  DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
+  DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
+  file_picker: 15fd9539e4eb735dc54bae8c0534a7a9511a03de
   Firebase: 10c8cb12fb7ad2ae0c09ffc86cd9c1ab392a0031
   firebase_core: a46c312d8bae4defa3d009b2aa7b5b413aeb394e
   FirebaseCore: 28045c1560a2600d284b9c45a904fe322dc890b6
@@ -436,9 +489,12 @@ SPEC CHECKSUMS:
   PDFTron: c6b0a9fb8846beaf2bd9913f10fb68e6fdc4d2b0
   pdftron_flutter: 26edc34717afac412bcccb6062a36c6329564b07
   PDFTronTools: 3232622ea9162539a87a8fbb9e2f0de9a7f5d7d1
+  permission_handler_apple: 036b856153a2b1f61f21030ff725f3e6fece2b78
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   Protobuf: 8e9074797a13c484a79959fdb819ef4ae6da7dbe
+  SDWebImage: 981fd7e860af070920f249fd092420006014c3eb
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
+  SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f
 
 PODFILE CHECKSUM: d7d17c63fee46cc6e806cee05ba2f7d00551ba13
 
