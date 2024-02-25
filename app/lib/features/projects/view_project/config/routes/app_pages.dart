@@ -1,5 +1,6 @@
-import '../../features/dashboard/views/screens/dashboard_screen.dart';
 import 'package:get/get.dart';
+
+import '../../features/dashboard/views/screens/dashboard_screen.dart';
 
 part 'app_routes.dart';
 
@@ -11,7 +12,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.dashboard,
-      page: () => const DashboardScreen(),
+      page: () => DashboardScreen(),
       binding: DashboardBinding(),
     ),
   ];

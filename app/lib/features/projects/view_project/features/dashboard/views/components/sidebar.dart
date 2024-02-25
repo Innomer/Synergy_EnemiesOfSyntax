@@ -58,7 +58,7 @@ class _Sidebar extends StatelessWidget {
                 ),
               ],
               onSelected: (index, value) {
-                log("index : $index | label : ${value.label}");
+                logger.d("index : $index | label : ${value.label}");
               },
             ),
             const Divider(thickness: 1),

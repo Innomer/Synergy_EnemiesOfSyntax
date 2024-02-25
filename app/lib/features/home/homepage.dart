@@ -1,8 +1,8 @@
-import 'package:ducument_storage/details.dart';
-import 'package:ducument_storage/models/folder.dart';
-import 'package:ducument_storage/models/recentfile.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+import 'details.dart';
+import 'models/folder.dart';
+import 'models/recentfile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,45 +29,23 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  String urlProfile =
-      'https://as1.ftcdn.net/v2/jpg/01/80/71/30/1000_F_180713020_Dn7jlE2XamYfJp32Bu0QqDwgvhfRxTf0.jpg';
+  String urlProfile = 'https://as1.ftcdn.net/v2/jpg/01/80/71/30/1000_F_180713020_Dn7jlE2XamYfJp32Bu0QqDwgvhfRxTf0.jpg';
 
   List<Folder> folders = [
-    Folder(
-        folderName: 'Drawings',
-        storage: '6GB',
-        lastEdit: '15-02-2023',
-        colors: '#3a86ff'),
-    Folder(
-        folderName: 'Documents',
-        storage: '3GB',
-        lastEdit: '15-02-2023',
-        colors: '#2ec4b6'),
-    Folder(
-        folderName: 'Images',
-        storage: '1GB',
-        lastEdit: '15-02-2023',
-        colors: '#ffbe0b'),
-    Folder(
-        folderName: 'Trash',
-        storage: '8GB',
-        lastEdit: '15-02-2023',
-        colors: '#fb5607')
+    Folder(folderName: 'Drawings', storage: '6GB', lastEdit: '15-02-2023', colors: '#3a86ff'),
+    Folder(folderName: 'Documents', storage: '3GB', lastEdit: '15-02-2023', colors: '#2ec4b6'),
+    Folder(folderName: 'Images', storage: '1GB', lastEdit: '15-02-2023', colors: '#ffbe0b'),
+    Folder(folderName: 'Trash', storage: '8GB', lastEdit: '15-02-2023', colors: '#fb5607')
   ];
 
   List<RecentFile> recentfiles = [
     RecentFile(
         fileName: 'Desktop',
-        imageUrl:
-            'https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'),
+        imageUrl: 'https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'),
     RecentFile(
-        fileName: 'Laptop',
-        imageUrl:
-            'https://images.unsplash.com/photo-1661961112835-ca6f5811d2af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80'),
+        fileName: 'Laptop', imageUrl: 'https://images.unsplash.com/photo-1661961112835-ca6f5811d2af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80'),
     RecentFile(
-        fileName: 'Laptop',
-        imageUrl:
-            'https://images.unsplash.com/photo-1661961112835-ca6f5811d2af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80'),
+        fileName: 'Laptop', imageUrl: 'https://images.unsplash.com/photo-1661961112835-ca6f5811d2af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80'),
   ];
 
   @override
@@ -91,8 +69,7 @@ class _MainPageState extends State<MainPage> {
                     children: [
                       Container(
                         padding: const EdgeInsets.all(2),
-                        decoration: const BoxDecoration(
-                            color: Colors.white, shape: BoxShape.circle),
+                        decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
                         child: CircleAvatar(
                           radius: 28,
                           backgroundColor: Colors.transparent,
@@ -102,11 +79,8 @@ class _MainPageState extends State<MainPage> {
                       const SizedBox(width: 12),
                       Text(
                         "Hi Dishant!",
-                        style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600),
-                      )
+                        style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
+                      ),
                     ],
                   ),
                   Row(
@@ -119,18 +93,12 @@ class _MainPageState extends State<MainPage> {
                             const SizedBox(height: 16),
                             Text(
                               "Docstruct",
-                              style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w800),
+                              style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.w800),
                             ),
                             const SizedBox(width: 12),
                             Text(
                               "Revolutionize document management for construction teams, integrating advanced solutions for seamless file navigation and collaboration.",
-                              style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400),
+                              style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
                             ),
                           ],
                         ),
@@ -138,7 +106,7 @@ class _MainPageState extends State<MainPage> {
                       Expanded(
                         flex: 1,
                         child: Image.asset(
-                          'assets/folder.png',
+                          'assets/images/folderr.png',
                         ),
                       ),
                     ],
@@ -165,10 +133,7 @@ class _MainPageState extends State<MainPage> {
                         Container(
                           margin: const EdgeInsets.all(4),
                           padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              color: HexColor('${folders[i].colors}')
-                                  .withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(16)),
+                          decoration: BoxDecoration(color: HexColor('${folders[i].colors}').withOpacity(0.1), borderRadius: BorderRadius.circular(16)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -176,16 +141,13 @@ class _MainPageState extends State<MainPage> {
                                 alignment: Alignment.centerRight,
                                 child: Text(
                                   "${folders[i].storage}",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500),
+                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                                 ),
                               ),
                               const SizedBox(height: 32),
                               Text(
                                 "${folders[i].folderName}",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 18, fontWeight: FontWeight.w600),
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                               ),
                               const Divider(
                                 color: Colors.white,
@@ -194,10 +156,7 @@ class _MainPageState extends State<MainPage> {
                               Text(
                                 "Last edit: ${folders[i].lastEdit}",
                                 textAlign: TextAlign.center,
-                                style: GoogleFonts.poppins(
-                                    color: Colors.black45,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400),
+                                style: TextStyle(color: Colors.black45, fontSize: 12, fontWeight: FontWeight.w400),
                               ),
                             ],
                           ),

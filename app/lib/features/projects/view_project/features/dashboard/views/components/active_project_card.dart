@@ -23,7 +23,7 @@ class _ActiveProjectCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _title("My Active Project"),
+                _title("Project Files"),
                 _seeAllButton(onPressed: onPressedSeeAll),
               ],
             ),

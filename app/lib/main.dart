@@ -1,15 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:pdftron_flutter/pdftron_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:synergy/features/onboarding/splash_screen.dart';
 import 'package:synergy/features/projects/view_project/features/dashboard/views/screens/onboarding_example.dart';
 import 'package:synergy/utils/utils.dart';
 
-import 'features/main/main_screen.dart';
 import 'firebase_options.dart';
 import 'logic/stores/auth_store.dart';
-import 'logic/stores/profile_store.dart';
+import 'logic/stores/project_store.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,14 +44,14 @@ class MainApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthStore()),
-        ChangeNotifierProvider(create: (_) => ProfileStore()),
+        ChangeNotifierProvider(create: (_) => ProjectStore()),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: lightTheme(),
         darkTheme: darkTheme(),
         themeMode: ThemeMode.system,
-        home: const OnboardingExample(),
+        home: const SplashScreen(),
       ),
     );
   }
