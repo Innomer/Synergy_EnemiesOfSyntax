@@ -1,0 +1,29 @@
+/* EDITABLE MODAL */
+.ant-modal-title {
+  font-size: 25px !important;
+}
+
+/* FORM */
+.search-disabled .ant-input-prefix .anticon {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.ant-form-item-explain-error {
+  font-size: 11px;
+}
+
+/* BUTTONS */
+.small-button:hover,
+.small-button:focus {
+  box-shadow:
+    rgba(14, 30, 37, 0.3) 0px 3px 6px 0px,
+    rgba(14, 30, 37, 0.4) 0px 3px 12px 0px !important;
+}
+
+.export-button:hover {
+  box-shadow:
+    rgba(14, 30, 37, 0.3) 0px 3px 6px 0px,
+    rgba(14, 30, 37, 0.4) 0px 3px 14px 2px !important;
+}

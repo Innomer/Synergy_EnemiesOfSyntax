@@ -1,0 +1,233 @@
+  /*TABLE STYLES*/
+
+th {
+  font-size: 1.125rem;
+  height: 45px;
+  text-align: center !important;
+  /* to prevent ellipsis of column header */
+  white-space: normal !important;
+  border-bottom: 1px solid var(--font-color) !important;
+}
+
+.ant-table {
+  color: white !important;
+}
+
+.ant-table-wrapper .ant-table-thead > tr > th {
+  padding: 5px 5px !important;
+}
+
+.ant-table-wrapper .ant-table {
+  border-radius: 8px;
+  border: solid 1px var(--highlight-yellow);
+}
+
+/*border for table*/
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-content > table > thead > tr > th,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-header > table > thead > tr > th,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-body > table > thead > tr > th,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-summary > table > thead > tr > th,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-content > table > thead > tr > td,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-summary > table > thead > tr > td,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-content > table > tbody > tr > th,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-header > table > tbody > tr > th,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-body > table > tbody > tr > th,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-summary > table > tbody > tr > th,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-content > table > tbody > tr > td,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-header > table > tbody > tr > td,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-body > table > tbody > tr > td,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-summary > table > tbody > tr > td,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-content > table > tfoot > tr > th,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-header > table > tfoot > tr > th,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-body > table > tfoot > tr > th,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-summary > table > tfoot > tr > th,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-content > table > tfoot > tr > td,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-header > table > tfoot > tr > td,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-body > table > tfoot > tr > td,
+.ant-table-wrapper .ant-table.ant-table-bordered > .ant-table-container > .ant-table-summary > table > tfoot > tr > td {
+  border-inline-end: 1px solid var(--font-color) !important;
+}
+.ant-table-wrapper .ant-table-tbody > tr > td {
+  border-bottom: 1px solid var(--font-color) !important;
+}
+
+/* targetting all cells inclulding header */
+.ant-table-cell {
+  background-color: var(--background-color-secondary) !important;
+  color: var(--font-color) !important;
+}
+
+/* Making grouped columns a little bit better */
+.ant-table-cell[scope='colgroup'] {
+  padding: 14px 12px 12px 12px !important;
+}
+
+/* targeting only body ke cells more specifically */
+tbody .ant-table-cell {
+  color: silver !important;
+}
+
+/* No data description*/
+.ant-empty-description {
+  font-size: 1.25rem;
+  color: var(--font-color) !important;
+}
+
+/* row highlight on hover*/
+.data-exist .ant-table-tbody > tr:hover > td,
+.data-exist .ant-table-tbody > tr[data-row-key='${currentRow}'] > td {
+  background-color: var(--highlight-purple) !important;
+  color: var(--font-color) !important;
+}
+/* column header over hover */
+/* .data-exist .ant-table-thead > tr > th:hover,
+.data-exist .ant-table-thead > tr > th[data-column-key="${currentColumn}"] {
+}*/
+
+/* PAGINATION */
+.ant-pagination-options-size-changer {
+  margin-right: 13px;
+}
+.ant-pagination-options-quick-jumper > input:focus {
+  border: 1px solid var(--highlight-yellow) !important;
+  box-shadow: 0 0 0 1px var(--highlight-light-yellow) !important;
+}
+.ant-pagination-options-quick-jumper > input {
+  background-color: var(--fill-color) !important;
+  border-color: var(--font-color) !important;
+}
+.ant-pagination {
+  margin: 0px 0px !important;
+  padding: 15px 15px;
+  background-color: var(--fill-color);
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border: 1px solid var(--font-color) !important;
+}
+.ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover
+  .ant-select-selector {
+  border-color: var(--font-color) !important;
+  outline: 1px solid;
+}
+.ant-pagination-item > a,
+.ant-pagination-prev > button,
+.ant-pagination-next > button {
+  color: var(--font-color) !important;
+}
+.ant-pagination-item-active {
+  background-color: var(--background-color-secondary) !important;
+  border-color: var(--highlight-yellow) !important;
+}
+
+/*FOOTER */
+.ant-table-footer {
+  height: 0px;
+  width: 0px;
+  padding: 0px !important;
+  border: 0px !important;
+}
+
+/*TABLE FILTERS*/
+.ant-dropdown-trigger.ant-table-filter-trigger {
+  margin-right: 3px !important;
+}
+.ant-table-wrapper .ant-table-filter-trigger {
+  margin-inline: 0 !important;
+}
+.ant-table-column-sorter.ant-table-column-sorter-full,
+.ant-table-column-sorter.ant-table-column-sorter-full:active,
+.ant-table-column-sorter.ant-table-column-sorter-full:focus {
+  color: var(--font-color);
+}
+.ant-table-wrapper .ant-table-filter-trigger,
+.ant-table-wrapper .ant-table-filter-trigger:hover,
+.ant-table-wrapper .ant-table-filter-trigger:focus {
+  color: var(--font-color);
+}
+.ant-input-affix-wrapper.ant-table-filter-dropdown-search-input > .ant-input-prefix > .anticon {
+  color: var(--font-color) !important;
+}
+.ant-table-filter-dropdown-btns button {
+  background-color: var(--positive-color);
+}
+.ant-table-wrapper .ant-table-filter-trigger.active {
+  color: var(--positive-color);
+}
+.ant-table-filter-dropdown {
+  color: var(--font-color) !important;
+  background-color: var(--background-color-secondary) !important;
+  box-shadow:
+    rgba(119, 43, 237, 0.09) 0px 20px 20px,
+    rgba(119, 43, 237, 0.15) 0px -5px 15px,
+    rgba(119, 43, 237, 0.15) 0px 2px 4px,
+    rgba(119, 43, 237, 0.2) 0px 5px 8px,
+    rgba(119, 43, 237, 0.1) 0px -1px 4px !important;
+}
+
+.ant-input-affix-wrapper.ant-table-filter-dropdown-search-input {
+  background-color: var(--fill-color);
+  color: var(--font-color);
+}
+
+.ant-dropdown .ant-table-filter-dropdown .ant-table-filter-dropdown-search-input .anticon {
+  padding-right: 8px;
+}
+
+.ant-select.ant-pagination-options-size-changer {
+  outline: var(--negetive-color) !important;
+}
+
+.ant-table-filter-dropdown-btns button:first-child {
+  background-color: var(--negetive-hightlight-color);
+  color: inherit !important;
+}
+
+.ant-table-filter-dropdown-btns button:first-child:hover,
+.ant-table-filter-dropdown-btns button:first-child:focus {
+  background-color: var(--negetive-color);
+}
+
+.ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropdown-menu-light.ant-dropdown-menu-without-submenu {
+  background-color: inherit !important;
+  color: inherit !important;
+}
+
+.ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item,
+.ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item:hover {
+  background-color: transparent;
+}
+
+.ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item-selected,
+.ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item-selected:hover {
+  background-color: var(--positive-color);
+}
+
+.ant-table-filter-dropdown {
+  outline: 1px dashed var(--font-color);
+}
+
+/* SORTERS */
+.ant-table-column-sorter-up.active,
+.ant-table-column-sorter-down.active {
+  color: var(--positive-color) !important;
+}
+
+.ant-table-column-sorter.ant-table-column-sorter-full {
+  margin-right: 3px !important;
+}
+/* for header to show different color when active */
+/* .ant-table-column-sort {
+  color: pink !important;
+} */
+
+.ant-table-wrapper td.ant-table-column-sort {
+  color: var(--font-color) !important;
+}
+
+/*expandable table*/
+.ant-table-wrapper .ant-table-row-expand-icon:hover,
+.ant-table-wrapper .ant-table-row-expand-icon:focus  {
+  color: var(--highlight-yellow) !important;
+}

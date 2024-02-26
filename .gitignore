@@ -1,1 +1,33 @@
-node_modules
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+#migrations
+/drizzleMigrations
+/dbMigrations
+
+#vscode
+.vscode
+
+# local env files
+.env.local
+.env
+
+# vercel
+.vercel
+
+# logs
+/logs
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
