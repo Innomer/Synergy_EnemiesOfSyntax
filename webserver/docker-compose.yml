@@ -58,7 +58,7 @@ services:
           # More info about these arguments can be found at: 
             # https://www.pdftron.com/documentation/web/guides/wv-server-config
             # Place your PDFTron key in this argument.
-            TRN_PDFNET_KEY: 'demo:1708770002935:7f56906f030000000080a44f7237599240a4e00235f3c0f3230bcd66f4'
+            TRN_PDFNET_KEY: ''
             # If set to true, tomcat will include the demo app at localhost:port/demo?s
             INCLUDE_DEMO: 'true'
             # Normally the cache cleanup is triggered once there is less than 1Gb 
