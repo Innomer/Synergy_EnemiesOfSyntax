@@ -65,11 +65,6 @@ Each of these technologies has been selected for their proven reliability and al
 [![Flutter](https://img.shields.io/badge/flutter-%2302569B.svg?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev/)
 [![Node.js](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node-dot-js&logoColor=white)](https://nodejs.org/)
 
-# Software Architecture 
-
-![DocStructArchi](https://github.com/dishantzaveri/DocStruct/assets/80118978/8d98e338-3dc6-41d6-a5a0-6be7804f462f)
-
-
 <br />
 
 ---
